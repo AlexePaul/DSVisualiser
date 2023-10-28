@@ -1,0 +1,8 @@
+<div class="container mx-auto m-3 w-full">
+  
+    <button class="block border-solid border-2 border-sky-500 p-1 mt-2 bg-slate-100 hover:border-blue-500 mx-auto" (click) = "this.SLL.insertValue(this.value); this.draw(); this.value = this.value+1">Adauga numar</button>
+    <button class="block border-solid border-2 border-sky-500 p-1 mt-2 bg-slate-100 hover:border-blue-500 mx-auto" (click) = "this.SLL.removeFirst(); this.draw()">Scoate primul numar</button>
+
+    <canvas id="Canvas" class = "mx-auto m-10 border-2 border-solid border-black" style = "width:100%" width="1920" height="1080">
+    </canvas>
+  </div>
