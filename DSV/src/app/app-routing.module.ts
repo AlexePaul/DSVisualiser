@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { SllComponent } from './sll/sll.component';
 
 const routes: Routes = [
-  {path: 'simplelinkedlist', component: SllComponent}
+  {path: 'simplelinkedlist', component: SllComponent},
 ];
 
 @NgModule({
