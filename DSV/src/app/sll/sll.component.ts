@@ -9,7 +9,9 @@ import { simpleLinkedList } from 'src/shared/models/simpleLinkedList';
 export class SllComponent {
   SLL: simpleLinkedList = new simpleLinkedList();
   value: number = 0;
-  animation: boolean = false;
+  stopAnimation: boolean = false;
+  position:[number,number,number,number,string, number][] = [];
+  clicked: boolean = false;
 
   get SLLAsArray(){
     return this.SLL.asArray();
@@ -43,39 +45,37 @@ export class SllComponent {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  async FadingColorRectangle(x : any, y : any, width : any, height : any, startingColor:string){
-    this.animation = true;
-    if(startingColor == "Red"){
-      let red = 255;
-      while(red > 0){
-        this.drawRectangle(x,y,width,height,"rgb("+red+",0,0)")
-        red -= 3;
-        await this.delay(1)
+  async update(){
+
+  }
+
+  async FadingColorRectangle(i:any){
+    let startingColor = this.position[i][4]; 
+    let startingSize = this.position[i][5];
+    let value = 255;
+    while(value > 0){
+      let x = this.position[i][0];
+      let y = this.position[i][1];
+      let width = this.position[i][2];
+      let height = this.position[i][3];
+
+      if(this.stopAnimation == true || this.position[i][5] > startingSize){
+        return;
       }
+
+      if(startingColor == "Red")
+        this.drawRectangle(x,y,width,height,"rgb("+value+",0,0)")
+      else if(startingColor == "Blue")
+        this.drawRectangle(x,y,width,height,"rgb(0,0,"+value+")")
+      else
+        this.drawRectangle(x,y,width,height,"rgb(0,"+value+",0)")
+        value -= 2;
+      await this.delay(1)
     }
-    else if(startingColor == "Blue"){
-      let blue = 255;
-      while(blue > 0){
-        this.drawRectangle(x,y,width,height,"rgb(0,0,"+blue+")")
-        blue -= 3;
-        await this.delay(1)
-      }
-    }
-    else if(startingColor == "Green"){
-      let Green = 255;
-      while(Green > 0){
-        this.drawRectangle(x,y,width,height,"rgb(0,"+Green+",0)")
-        Green -= 3;
-        await this.delay(1)
-      }
-    }
-    this.animation = false;
     this.draw()
   }
 
   async draw(){
-    while(this.animation == true)
-      await this.delay(1);
     const canvas = document.getElementById("Canvas") as HTMLCanvasElement;
     const ctx = canvas.getContext('2d');
     var windowWidth = window.innerWidth;
@@ -98,20 +98,25 @@ export class SllComponent {
       if(windowHeight > windowWidth){
         [rectangleHeight, rectangleWidth] = [rectangleWidth, rectangleHeight];
       }
-      console.log(maxPerRow);
+
 
       // Desenez patratele
       for (let i = 0; i < this.SLLAsArray.length; i++){
+        this.position[i] = [space*((i)%(maxPerRow)+1)-rectangleWidth/2, (1 + Math.floor((i)/(maxPerRow)))*40+Math.floor((i)/(maxPerRow))*rectangleHeight, rectangleWidth, rectangleHeight, "", this.SLLAsArray.length];
         if(this.SLLAsArray[i].new == false)
-          this.drawRectangle(space*((i)%(maxPerRow)+1)-rectangleWidth/2, (1 + Math.floor((i)/(maxPerRow)))*40+Math.floor((i)/(maxPerRow))*rectangleHeight, rectangleWidth, rectangleHeight);
+          this.drawRectangle(this.position[i][0],this.position[i][1], this.position[i][2], this.position[i][3]);
         else{
-          if(i == 0)
-            this.FadingColorRectangle(space*((i)%(maxPerRow)+1)-rectangleWidth/2, (1 + Math.floor((i)/(maxPerRow)))*40+Math.floor((i)/(maxPerRow))*rectangleHeight, rectangleWidth, rectangleHeight, "Red");
+          if(i == 0){
+            this.position[i][4] = "Red";
+            this.FadingColorRectangle(i);
+          }
           else if(i == this.SLLAsArray.length -1){
-            this.FadingColorRectangle(space*((i)%(maxPerRow)+1)-rectangleWidth/2, (1 + Math.floor((i)/(maxPerRow)))*40+Math.floor((i)/(maxPerRow))*rectangleHeight, rectangleWidth, rectangleHeight, "Blue");
+            this.position[i][4] = "Blue";
+            this.FadingColorRectangle(i);
           }
           else{
-            this.FadingColorRectangle(space*((i)%(maxPerRow)+1)-rectangleWidth/2, (1 + Math.floor((i)/(maxPerRow)))*40+Math.floor((i)/(maxPerRow))*rectangleHeight, rectangleWidth, rectangleHeight, "Green");
+            this.position[i][4] = "Green";
+            this.FadingColorRectangle(i);
           }
           this.SLLAsArray[i].new = false;
         }
@@ -162,4 +167,21 @@ export class SllComponent {
 
     }
   }
+
+  async removeFirst(){
+    this.stopAnimation = true;
+    await this.delay(3);
+    this.SLL.removeFirst();
+    this.stopAnimation = false;
+    this.draw();
+  }
+
+  async removeBack(){
+    this.stopAnimation = true;
+    await this.delay(3);
+    this.SLL.removeBack();
+    this.stopAnimation = false;
+    this.draw();
+  }
+
 }

@@ -5,11 +5,13 @@ import { AppRoutingModule} from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SllComponent } from './sll/sll.component';
 import { FormsModule } from '@angular/forms';
+import { BinaryHeapComponent } from './binary-heap/binary-heap.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SllComponent
+    SllComponent,
+    BinaryHeapComponent
   ],
   imports: [
     BrowserModule,

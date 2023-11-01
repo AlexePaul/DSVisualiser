@@ -1,13 +1,14 @@
-<div class="container mx-auto m-3 w-full">
+<div class="container mx-auto m-3 w-full" (window:resize) = "this.draw()">
   
   <form class="text-center">
     <input name = "InsertValue" type="number" style = "width:16vw" class = "text-left border-solid border border-sky-500 p-1 mt-2 bg-slate-100 hover:border-blue-500 mx-auto" [(ngModel)]="this.value">
     <br>
     <div class ="inline-block mx-auto text-center" style = "width:17vw">
     <button 
+      id = "btn"
       type = "submit" 
       class="inline-block border-solid border border-sky-500 p-1 mr-4 mt-2 bg-slate-100 hover:border-blue-500 mx-auto" 
-      (click) = "$event.preventDefault(); this.SLL.insertValue(this.value); this.draw();"
+      (click) = "$event.preventDefault(); this.SLL.insertValue(this.value); this.draw(); this.clicked = true;"
       >Adauga numar</button>
     <button 
       type = "submit" 
@@ -19,12 +20,12 @@
   <div class="text-center">
     <button 
     class="inline border-solid border border-sky-500 p-1 mt-2 mr-4 bg-slate-100 hover:border-blue-500 mx-auto" 
-    (click) = "this.SLL.removeFirst(); this.draw()"
+    (click) = "$event.preventDefault(); this.removeFirst(); this.draw()"
     >Scoate primul numar</button>
     
     <button 
     class="inline border-solid border border-sky-500 p-1 mt-2 bg-slate-100 hover:border-blue-500 mx-auto" 
-    (click) = "this.SLL.removeBack(); this.draw()"
+    (click) = "$event.preventDefault(); this.removeBack(); this.draw()"
     >Scoate ultimul numar</button>
   </div>
     <canvas id="Canvas" class = "mx-auto m-10 border-2 border-solid border-black" style = "width:100%" width="1920" height="1080"></canvas>

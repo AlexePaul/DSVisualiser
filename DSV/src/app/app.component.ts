@@ -8,4 +8,6 @@ import { simpleLinkedList } from 'src/shared/models/simpleLinkedList';
 })
 export class AppComponent {
   title = "DSV";
+  constructor(){
+  }
 }
