@@ -3,8 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { SllComponent } from './sll/sll.component';
 import { BinaryHeapComponent } from './binary-heap/binary-heap.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
+  {path: '', component: HomeComponent},
   {path: 'simplelinkedlist', component: SllComponent},
   {path: 'binaryheap', component: BinaryHeapComponent},
 ];
