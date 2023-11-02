@@ -125,15 +125,15 @@ export class SllComponent {
       // Impart patratele in 2
       ctx.beginPath();
       for (let i = 0; i < this.SLLAsArray.length; i++){
-        ctx.moveTo(space*((i)%(maxPerRow)+1), (1 + Math.floor((i)/(maxPerRow)))*40+Math.floor((i)/(maxPerRow))*rectangleHeight);
-        ctx.lineTo(space*((i)%(maxPerRow)+1), (1 + Math.floor((i)/(maxPerRow)))*40+Math.floor((i)/(maxPerRow))*rectangleHeight + rectangleHeight);
+        ctx.moveTo(space*((i)%(maxPerRow)+1)+ rectangleWidth/4, (1 + Math.floor((i)/(maxPerRow)))*40+Math.floor((i)/(maxPerRow))*rectangleHeight);
+        ctx.lineTo(space*((i)%(maxPerRow)+1)+ rectangleWidth/4, (1 + Math.floor((i)/(maxPerRow)))*40+Math.floor((i)/(maxPerRow))*rectangleHeight + rectangleHeight);
         ctx.strokeStyle="Black";
         ctx.stroke();
       }
 
       // Pun numarul in patrate
       for(let i = 0; i < this.SLLAsArray.length; i++){
-        ctx.font = rectangleHeight/2+"px Tahoma";
+        ctx.font = rectangleHeight/3+"px Tahoma";
         ctx.fillText(String(this.SLLAsArray[i].value),  space*((i)%(maxPerRow)+1)-rectangleWidth/2, (1 + Math.floor((i)/(maxPerRow)))*40+Math.floor((i)/(maxPerRow))*rectangleHeight + 11*rectangleHeight/16);
       }
 
@@ -141,7 +141,7 @@ export class SllComponent {
       for(let i = 0; i < this.SLLAsArray.length-1; i++){
         if((i+1)%maxPerRow){
           ctx.beginPath();
-          ctx.moveTo(space*((i)%(maxPerRow)+1) + rectangleWidth/4, (1 + Math.floor((i)/(maxPerRow)))*40+Math.floor((i)/(maxPerRow))*rectangleHeight + rectangleHeight/2);
+          ctx.moveTo(space*((i)%(maxPerRow)+1) + 3*rectangleWidth/8, (1 + Math.floor((i)/(maxPerRow)))*40+Math.floor((i)/(maxPerRow))*rectangleHeight + rectangleHeight/2);
           ctx.lineTo(space*((i)%(maxPerRow)+2) - rectangleWidth/2, (1 + Math.floor((i)/(maxPerRow)))*40+Math.floor((i)/(maxPerRow))*rectangleHeight + rectangleHeight/2);
           ctx.stroke();
           ctx.beginPath();

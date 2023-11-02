@@ -12,6 +12,7 @@ export class BinaryHeapComponent {
   tooMuch: number = 0;
   animation: boolean = false;
   stopAnimation: boolean = false;
+  disabled: boolean = false;
 
   constructor(){
     this.draw = this.draw.bind(this);
@@ -187,6 +188,7 @@ export class BinaryHeapComponent {
   }
 
   async insert(){
+    this.disabled = true;
     let maxAmount = Math.max(31 * window.innerWidth / 1920,31 * window.innerHeight / 1080);
     while(this.only1binary(maxAmount) == false)
       maxAmount--;
@@ -200,10 +202,13 @@ export class BinaryHeapComponent {
     else
       this.tooMuch = 1;
     this.draw([], "");
+    this.disabled = false;
   }
   async remove(){
+    this.disabled = true;
     await this.bHeap.removeRoot();
     this.tooMuch = 0;
     this.draw([], "");
+    this.disabled = false;
   }
 }

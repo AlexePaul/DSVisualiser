@@ -1,28 +1,41 @@
 <div class="container mx-auto m-3 w-full" (window:resize) = "this.draw([],'')">
   
     <form class="text-center">
-      <input name = "InsertValue" type="number" style = "width:16vw" class = "text-left border-solid border border-sky-500 p-1 mt-2 bg-slate-100 hover:border-blue-500 mx-auto" [(ngModel)]="this.value">
-      <br>
-      <div class ="inline-block mx-auto text-center" style = "width:17vw">
-      <button 
-        type = "submit" 
-        class="inline-block border-solid border border-sky-500 p-1 mr-4 mt-2 bg-slate-100 hover:border-blue-500 mx-auto" 
-        (click) = "$event.preventDefault(); this.insert(); this.draw([],'')"
-        >Adauga numar</button>
+      <div class ="flex mx-auto justify-between w-1/3">
+        <input name = "InsertValue" type="number" class = "block rounded-lg border-solid border border-sky-500 p-1 mt-2 w-5/12 font-semibold text-xs bg-slate-100 hover:border-blue-500 mx-0 md:inline-block md:text-base" [(ngModel)]="this.value">
+        <button 
+          type = "submit" 
+          class="block rounded-lg border-solid border border-sky-500 p-1 mt-2 w-5/12 font-semibold text-xs bg-slate-100 hover:border-blue-500 mx-0 md:inline-block md:text-base" 
+          [disabled]="this.disabled"
+          (click) = "$event.preventDefault(); this.insert(); this.draw([],'')"
+          >Adauga numar</button>
       </div>
     </form>
-    <div class="text-center">
+    <div class="flex mx-auto justify-between w-1/3">
+      <select
+      class="block rounded-lg border-solid border border-sky-500 p-1 mt-2 w-5/12 font-semibold text-xs bg-slate-100 hover:border-blue-500 mx-0 md:inline-block md:text-base"
+      [disabled]="this.disabled" 
+      [(ngModel)]="this.bHeap.minimum"
+      (ngModelChange)="this.draw([],'')"
+      >
+      <option [ngValue]="true">Minimum</option>
+      <option [ngValue]="false">Maximum</option>
+    </select>
       <button 
-      class="inline border-solid border border-sky-500 p-1 mt-2 mr-4 bg-slate-100 hover:border-blue-500 mx-auto" 
+      class="block rounded-lg border-solid border border-sky-500 p-1 mt-2 w-5/12 font-semibold text-xs bg-slate-100 hover:border-blue-500 mx-0 md:inline-block md:text-base"
+      [disabled]="this.disabled" 
       (click) = "$event.preventDefault(); this.remove(); this.draw([],'')"
-      >Scoate minimul</button>
+      >
+      <div *ngIf = "this.bHeap.minimum == true">Scoate minimul</div>
+      <div *ngIf = "this.bHeap.minimum != true">Scoate maximul</div>
+      </button>
     </div>
-    <div *ngIf = "tooMuch == 1" class ="text-red-600 text-center font-bold text-2xl">
+    <div *ngIf = "tooMuch == 1" class ="text-red-600 text-center font-semibold text-2xl">
       Too Many Values!
       <br>
       Remove before inserting again!
     </div>
-    <div *ngIf = "tooMuch == 0.5" class ="text-yellow-600 text-center font-bold text-2xl">
+    <div *ngIf = "tooMuch == 0.5" class ="text-yellow-600 text-center font-semibold text-2xl">
       You hit the size cap!
       <br>
     </div>
