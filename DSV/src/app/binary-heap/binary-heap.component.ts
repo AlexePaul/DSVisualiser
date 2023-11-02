@@ -90,7 +90,7 @@ export class BinaryHeapComponent {
     if(ctx == null)
       return;
     let value = 255;
-    while(value > 64){
+    while(value > 128){
       if(this.stopAnimation == true)
         return;
       ctx.beginPath();
@@ -101,9 +101,9 @@ export class BinaryHeapComponent {
       ctx.strokeStyle = "rgb(0,0,"+value+")";
       else
       ctx.strokeStyle = "rgb(0,"+value+",0)";
-        value -= 2;
+        value -= 1;
       ctx.stroke();
-      await this.delay(1)
+      await this.delay(10)
     }
     this.animation = false;
   }
