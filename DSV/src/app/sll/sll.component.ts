@@ -49,7 +49,7 @@ export class SllComponent {
 
   }
 
-  async FadingColorRectangle(i:any){
+  async FadingColorRectangle(i:any, color:string = ""){
     let startingColor = this.position[i][4]; 
     let startingSize = this.position[i][5];
     let value = 255;
@@ -62,20 +62,34 @@ export class SllComponent {
       if(this.stopAnimation == true || this.position[i][5] > startingSize){
         return;
       }
-
-      if(startingColor == "Red")
+      console.log(color)
+      if(color == "rgb(255,255,255)"){
+        if(startingColor == "Red")
+          this.drawRectangle(x,y,width,height,"rgb("+255+","+(255-value)+","+(255-value)+")")
+        else if(startingColor == "Blue")
+          this.drawRectangle(x,y,width,height,"rgb("+(255-value)+","+(255-value)+","+255+")")
+        else
+          this.drawRectangle(x,y,width,height,"rgb("+(255-value)+","+255+","+(255-value)+")")
+      }
+      else{
+        if(startingColor == "Red")
         this.drawRectangle(x,y,width,height,"rgb("+value+",0,0)")
       else if(startingColor == "Blue")
         this.drawRectangle(x,y,width,height,"rgb(0,0,"+value+")")
       else
         this.drawRectangle(x,y,width,height,"rgb(0,"+value+",0)")
-        value -= 2;
-      await this.delay(1)
+      }
+      value -= 2;
+        await this.delay(1)
     }
     this.draw()
   }
 
   async draw(){
+    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var myColor = "rgb(0,0,0)"
+    if(prefersDarkMode)
+      myColor = "rgb(255,255,255)"
     const canvas = document.getElementById("Canvas") as HTMLCanvasElement;
     const ctx = canvas.getContext('2d');
     var windowWidth = window.innerWidth;
@@ -104,19 +118,19 @@ export class SllComponent {
       for (let i = 0; i < this.SLLAsArray.length; i++){
         this.position[i] = [space*((i)%(maxPerRow)+1)-rectangleWidth/2, (1 + Math.floor((i)/(maxPerRow)))*40+Math.floor((i)/(maxPerRow))*rectangleHeight, rectangleWidth, rectangleHeight, "", this.SLLAsArray.length];
         if(this.SLLAsArray[i].new == false)
-          this.drawRectangle(this.position[i][0],this.position[i][1], this.position[i][2], this.position[i][3]);
+          this.drawRectangle(this.position[i][0],this.position[i][1], this.position[i][2], this.position[i][3],myColor);
         else{
           if(i == 0){
             this.position[i][4] = "Red";
-            this.FadingColorRectangle(i);
+            this.FadingColorRectangle(i, myColor);
           }
           else if(i == this.SLLAsArray.length -1){
             this.position[i][4] = "Blue";
-            this.FadingColorRectangle(i);
+            this.FadingColorRectangle(i, myColor);
           }
           else{
             this.position[i][4] = "Green";
-            this.FadingColorRectangle(i);
+            this.FadingColorRectangle(i, myColor);
           }
           this.SLLAsArray[i].new = false;
         }
@@ -127,13 +141,14 @@ export class SllComponent {
       for (let i = 0; i < this.SLLAsArray.length; i++){
         ctx.moveTo(space*((i)%(maxPerRow)+1)+ rectangleWidth/4, (1 + Math.floor((i)/(maxPerRow)))*40+Math.floor((i)/(maxPerRow))*rectangleHeight);
         ctx.lineTo(space*((i)%(maxPerRow)+1)+ rectangleWidth/4, (1 + Math.floor((i)/(maxPerRow)))*40+Math.floor((i)/(maxPerRow))*rectangleHeight + rectangleHeight);
-        ctx.strokeStyle="Black";
+        ctx.strokeStyle=myColor;
         ctx.stroke();
       }
 
       // Pun numarul in patrate
       for(let i = 0; i < this.SLLAsArray.length; i++){
         ctx.font = rectangleHeight/3+"px Tahoma";
+        ctx.fillStyle=myColor;
         ctx.fillText(String(this.SLLAsArray[i].value),  space*((i)%(maxPerRow)+1)-rectangleWidth/2, (1 + Math.floor((i)/(maxPerRow)))*40+Math.floor((i)/(maxPerRow))*rectangleHeight + 11*rectangleHeight/16);
       }
 
@@ -148,6 +163,7 @@ export class SllComponent {
           ctx.lineTo(space*((i)%(maxPerRow)+2) - rectangleWidth/2 - rectangleHeight/4, (1 + Math.floor((i)/(maxPerRow)))*40+Math.floor((i)/(maxPerRow))*rectangleHeight + rectangleHeight/4);
           ctx.lineTo(space*((i)%(maxPerRow)+2) - rectangleWidth/2 - rectangleHeight/4, (1 + Math.floor((i)/(maxPerRow)))*40+Math.floor((i)/(maxPerRow))*rectangleHeight + 3*rectangleHeight/4);
           ctx.lineTo(space*((i)%(maxPerRow)+2) - rectangleWidth/2, (1 + Math.floor((i)/(maxPerRow)))*40+Math.floor((i)/(maxPerRow))*rectangleHeight + rectangleHeight/2);
+          ctx.fillStyle=myColor;
           ctx.fill();
         }
         else{

@@ -1,34 +1,31 @@
-<div class="container mx-auto m-3 w-full" (window:resize) = "this.draw()">
+<div class="wrapper" (window:resize) = "this.draw()">
   
   <form class="text-center">
-    <input name = "InsertValue" type="number" class = "text-left border-solid border border-sky-500 p-1 mt-2 bg-slate-100 hover:border-blue-500 mx-auto w-1/3" [(ngModel)]="this.value">
+    <input name = "InsertValue" type="number" [(ngModel)]="this.value">
     <br>
-    <div class ="flex mx-auto justify-between w-1/3">
+    <div class ="row">
     <button 
       id = "btn"
-      type = "submit" 
-      class="block border-solid border border-sky-500 p-1 mt-2 w-5/12 font-bold text-xs bg-slate-100 hover:border-blue-500 mx-0 md:inline-block md:text-base" 
+      type = "submit"
+      id = "button" 
       style="order:1"
       (click) = "$event.preventDefault(); this.SLL.insertValue(this.value); this.draw(); this.clicked = true;"
       >Adauga numar</button>
     <button 
-      type = "submit" 
-      class="block border-solid border border-sky-500 p-1 mt-2 w-5/12 font-bold text-xs bg-slate-100 hover:border-blue-500 mx-0 md:inline-block md:text-base" 
-      style="order:2"
-      (click) = "$event.preventDefault(); this.SLL.insertValueBack(this.value); this.draw();"
-      >Adauga numar la coada</button>
+        type = "submit" 
+        style="order:2"
+        (click) = "$event.preventDefault(); this.SLL.insertValueBack(this.value); this.draw();"
+        >Adauga numar la coada</button>
     </div>
   </form>
-  <div class="flex mx-auto justify-between w-1/3">
+  <div class="row">
     <button 
-    class="block border-solid border border-sky-500 p-1 mt-2 w-5/12 font-bold text-xs bg-slate-100 hover:border-blue-500 mx-0 md:inline-block md:text-base" 
-    (click) = "$event.preventDefault(); this.removeFirst(); this.draw()"
-    >Scoate primul numar</button>
+      (click) = "$event.preventDefault(); this.removeFirst(); this.draw()"
+      >Scoate primul numar</button>
     
     <button 
-    class="block border-solid border border-sky-500 p-1 mt-2 w-5/12 font-bold text-xs bg-slate-100 hover:border-blue-500 mx-0 md:inline-block md:text-base" 
-    (click) = "$event.preventDefault(); this.removeBack(); this.draw()"
-    >Scoate ultimul numar</button>
+      (click) = "$event.preventDefault(); this.removeBack(); this.draw()"
+      >Scoate ultimul numar</button>
   </div>
-    <canvas id="Canvas" class = "mx-auto m-10 border-2 border-solid border-black" style = "width:100%" width="1920" height="1080"></canvas>
+    <canvas id="Canvas" width="1920" height="1080"></canvas>
   </div>

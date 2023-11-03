@@ -3,6 +3,27 @@
 @tailwind components;
 @tailwind utilities;
 
-.container{
-    width: 100vw;
+:root{
+    --clr-text: hsl(0, 7%, 3%);
+    --clr-background: hsl(320, 6%, 90%);
+    --clr-primary: hsl(80, 4%, 44%);
+    --clr-secondary: hsl(320, 5%, 88%);
+    --clr-accent: hsl(200, 4%, 48%);
+    --clr-big-accent: hsl(0, 0%, 0%);
+
+}
+
+@media (prefers-color-scheme: dark){
+    :root{
+        --clr-text: hsl(0, 0%, 80%);
+        --clr-background: hsl(320, 6%, 10%);
+        --clr-primary: hsl(80, 4%, 56%);
+        --clr-secondary: hsl(320, 5%, 12%);
+        --clr-accent: hsl(200, 4%, 52%);
+        --clr-big-accent: hsl(0, 0%, 100%);
+    }
+}
+
+body {
+    background-color: var(--clr-background);
 }

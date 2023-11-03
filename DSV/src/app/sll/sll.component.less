@@ -1,0 +1,56 @@
+.wrapper{
+    width:100% - 3rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button, input{
+    padding: 0.25rem;
+    margin-top: 0.5rem;
+    border-radius: 0.5rem;
+    border-width: 1px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    border-color: var(--clr-accent);
+    background-color: var(--clr-secondary);
+    color: var(--clr-text);
+}
+
+button:hover,
+input:hover{
+    border-color: var(--clr-big-accent);
+}
+
+button{
+    width:41.66667%;
+}
+
+input{
+    text-align: left;
+    width: 33.33333%;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.row{
+    display:flex;
+    margin-left:auto;
+    margin-right:auto;
+    justify-content: space-between;
+    width: 33.33333%;
+}
+
+canvas{
+    width:100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin: 2.5rem;
+}
+
+@media (min-width:768px){
+    button, input{
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+}

@@ -14,6 +14,14 @@ export class BinaryHeapComponent {
   stopAnimation: boolean = false;
   disabled: boolean = false;
 
+  /*
+  *     TO DO:
+  *     Window Resize: -> Move animations
+  *
+  * 
+  * 
+  */
+
   constructor(){
     this.draw = this.draw.bind(this);
     this.bHeap = new binaryHeap(true, this.draw);
@@ -83,7 +91,7 @@ export class BinaryHeapComponent {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  async fadingCircle(x:any, y:any, circleRadius:any, startingAngle:any, endAngle:any, startingColor:string = "Black"){
+  async fadingCircle(x:any, y:any, circleRadius:any, startingAngle:any, endAngle:any, startingColor:string = "Black", color:string = ""){
     this.animation = true;
     const canvas = document.getElementById("Canvas") as HTMLCanvasElement;
     const ctx = canvas.getContext('2d');
@@ -95,12 +103,22 @@ export class BinaryHeapComponent {
         return;
       ctx.beginPath();
       ctx.arc(x, y, circleRadius, startingAngle, endAngle);
-      if(startingColor == "Red")
-      ctx.strokeStyle = "rgb("+value+",0,0)";
-      else if(startingColor == "Blue")
-      ctx.strokeStyle = "rgb(0,0,"+value+")";
-      else
-      ctx.strokeStyle = "rgb(0,"+value+",0)";
+      if(color == "rgb(255,255,255)"){
+        if(startingColor == "Red")
+          ctx.strokeStyle = "rgb("+255+","+(255-value)+","+(255-value)+")";
+        else if(startingColor == "Blue")
+          ctx.strokeStyle = "rgb("+(255-value)+","+(255-value)+","+255+")";
+        else
+          ctx.strokeStyle = "rgb("+(255-value)+","+255+","+(255-value)+")";
+      }
+      else{
+        if(startingColor == "Red")
+          ctx.strokeStyle = "rgb("+value+",0,0)";
+        else if(startingColor == "Blue")
+          ctx.strokeStyle = "rgb(0,0,"+value+")";
+        else
+          ctx.strokeStyle = "rgb(0,"+value+",0)";
+      }
         value -= 1;
       ctx.stroke();
       await this.delay(10)
@@ -109,7 +127,11 @@ export class BinaryHeapComponent {
   }
 
   async draw(specialNumbers:number[], specialColor: string){
-    
+    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var myColor = "rgb(0,0,0)"
+    if(prefersDarkMode)
+      myColor = "rgb(255,255,255)"
+    console.log(myColor);
     this.stopAnimation = true;
     await this.delay(10);
 
@@ -129,7 +151,7 @@ export class BinaryHeapComponent {
     if(ctx == null)
     return new Promise(resolve => setTimeout(resolve, 1));
     
-      ctx.canvas.width  = windowWidth;
+    ctx.canvas.width  = windowWidth;
     ctx.canvas.height = windowHeight;
     while(size > 0){
       var space = Math.floor(windowWidth / (numberOfNodes*2));
@@ -140,32 +162,37 @@ export class BinaryHeapComponent {
             ctx.arc(space, 150*(step+1), circleRadius, 0, 2* Math.PI);
           else
             ctx.arc(space + 2*space*i, 150*(step+1), circleRadius, 0, 2* Math.PI);
+          ctx.strokeStyle = myColor;
           ctx.stroke();
 
           if(i==0){
             ctx.font = "16px Tahoma";
+            ctx.fillStyle = myColor;
             ctx.fillText(String(this.bHeap.array[counter++]),space,150*(step+1));
           }
           else{
             ctx.font = "16px Tahoma";
+            ctx.fillStyle = myColor;
             ctx.fillText(String(this.bHeap.array[counter++]),space + 2*space*i,150*(step+1));
           }
         }
         else{
           if(i == 0)
-            this.fadingCircle(space, 150*(step+1), circleRadius, 0, 2* Math.PI, specialColor);
+            this.fadingCircle(space, 150*(step+1), circleRadius, 0, 2* Math.PI, specialColor, myColor);
           else
-            this.fadingCircle(space + 2*space*i, 150*(step+1), circleRadius, 0, 2* Math.PI, specialColor);
-          ctx.strokeStyle="Black"
+            this.fadingCircle(space + 2*space*i, 150*(step+1), circleRadius, 0, 2* Math.PI, specialColor, myColor);
           if(i==0){
             ctx.font = "16px Tahoma";
+            ctx.fillStyle = myColor;
             ctx.fillText(String(this.bHeap.array[counter++]),space,150*(step+1));
           }
           else{
             ctx.font = "16px Tahoma";
+            ctx.fillStyle = myColor;
             ctx.fillText(String(this.bHeap.array[counter++]),space + 2*space*i,150*(step+1));
           }
         }
+        ctx.strokeStyle=myColor;
       }
         step++;
         size -= numberOfNodes;
