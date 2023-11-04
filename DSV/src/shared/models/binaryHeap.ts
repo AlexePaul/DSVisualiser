@@ -23,7 +23,6 @@ export class binaryHeap{
         let speech = new textToSpeech();
         speech.speakText("I add the node at the end");
         await this.draw([this.size], "Blue");
-        
         //will use this in order to make it work for both a min heap and a max heap
         let term = -1;
         if(this.minimum == true)

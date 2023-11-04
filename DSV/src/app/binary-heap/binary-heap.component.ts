@@ -13,7 +13,7 @@ export class BinaryHeapComponent {
   animation: boolean = false;
   stopAnimation: boolean = false;
   disabled: boolean = false;
-
+  position:[number,number,number][] = [];
   /*
   *     TO DO:
   *     Window Resize: -> Move animations
@@ -91,7 +91,7 @@ export class BinaryHeapComponent {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  async fadingCircle(x:any, y:any, circleRadius:any, startingAngle:any, endAngle:any, startingColor:string = "Black", color:string = ""){
+  async fadingCircle(i: any, startingColor:string = "Black", color:string = ""){
     this.animation = true;
     const canvas = document.getElementById("Canvas") as HTMLCanvasElement;
     const ctx = canvas.getContext('2d');
@@ -99,10 +99,11 @@ export class BinaryHeapComponent {
       return;
     let value = 255;
     while(value > 128){
-      if(this.stopAnimation == true)
-        return;
+      var x = this.position[i][0];
+      var y = this.position[i][1];
+      var circleRadius = this.position[i][2];
       ctx.beginPath();
-      ctx.arc(x, y, circleRadius, startingAngle, endAngle);
+      ctx.arc(x, y, circleRadius, 0, 2*Math.PI);
       if(color == "rgb(255,255,255)"){
         if(startingColor == "Red")
           ctx.strokeStyle = "rgb("+255+","+(255-value)+","+(255-value)+")";
@@ -131,11 +132,7 @@ export class BinaryHeapComponent {
     var myColor = "rgb(0,0,0)"
     if(prefersDarkMode)
       myColor = "rgb(255,255,255)"
-    console.log(myColor);
-    this.stopAnimation = true;
-    await this.delay(10);
-
-    this.stopAnimation = false;
+    
     const canvas = document.getElementById("Canvas") as HTMLCanvasElement;
     const ctx = canvas.getContext('2d');
     var windowWidth = window.innerWidth;
@@ -158,10 +155,14 @@ export class BinaryHeapComponent {
       for(var i = 0; i < Math.min(numberOfNodes,size); i++){
         if(nrs.indexOf(Number(counter)) == -1){
           ctx.beginPath();
-          if(i == 0)
-            ctx.arc(space, 150*(step+1), circleRadius, 0, 2* Math.PI);
-          else
-            ctx.arc(space + 2*space*i, 150*(step+1), circleRadius, 0, 2* Math.PI);
+          if(i == 0){
+            this.position[counter] = [space,150*(step+1),circleRadius];
+            ctx.arc(this.position[counter][0], this.position[counter][1], this.position[counter][2], 0, 2* Math.PI);
+          }
+          else{
+            this.position[counter] = [space + 2*space*i,150*(step+1),circleRadius];
+            ctx.arc(this.position[counter][0], this.position[counter][1], this.position[counter][2], 0, 2* Math.PI);
+          }
           ctx.strokeStyle = myColor;
           ctx.stroke();
 
@@ -177,10 +178,14 @@ export class BinaryHeapComponent {
           }
         }
         else{
-          if(i == 0)
-            this.fadingCircle(space, 150*(step+1), circleRadius, 0, 2* Math.PI, specialColor, myColor);
-          else
-            this.fadingCircle(space + 2*space*i, 150*(step+1), circleRadius, 0, 2* Math.PI, specialColor, myColor);
+          if(i == 0){
+            this.position[counter] = [space,150*(step+1),circleRadius];
+            this.fadingCircle(counter, specialColor, myColor);
+          }
+          else{
+            this.position[counter] = [space + 2*space*i,150*(step+1),circleRadius];
+            this.fadingCircle(counter, specialColor, myColor);
+          }
           if(i==0){
             ctx.font = "16px Tahoma";
             ctx.fillStyle = myColor;
