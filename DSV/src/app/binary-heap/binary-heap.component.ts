@@ -14,13 +14,6 @@ export class BinaryHeapComponent {
   stopAnimation: boolean = false;
   disabled: boolean = false;
   position:[number,number,number][] = [];
-  /*
-  *     TO DO:
-  *     Window Resize: -> Move animations
-  *
-  * 
-  * 
-  */
 
   constructor(){
     this.draw = this.draw.bind(this);

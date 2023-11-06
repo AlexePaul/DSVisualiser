@@ -1,1 +1,44 @@
-<p>bst works!</p>
+<div class="wrapper" (window:resize) = "this.draw([],'')">
+
+  <form>
+    <div class ="list">
+      <input name = "InsertValue" [(ngModel)]="this.numberList">
+      <button 
+        type = "submit"  
+        [disabled]="this.disabled"
+        (click) = "$event.preventDefault(); this.insertArray(); this.draw([],'')"
+        >Adauga Lista De Numere</button>
+    </div>
+  </form>
+
+    <form>
+      <div class ="row">
+        <input name = "InsertValue" type="number" [(ngModel)]="this.valueInsert">
+        <button 
+          type = "submit"  
+          [disabled]="this.disabled"
+          (click) = "$event.preventDefault(); this.insert(); this.draw([],'')"
+          >Adauga numar</button>
+      </div>
+    </form>
+    <form>
+      <div class ="row">
+        <input name = "SearchValue" type="number" [(ngModel)]="this.valueSearch">
+        <button 
+          type = "submit"  
+          [disabled]="this.disabled"
+          (click) = "$event.preventDefault(); this.search(); this.draw([],'')"
+          >Cauta numar</button>
+      </div>
+    </form>
+    <div *ngIf = "tooMuch == 1" class ="tooMany">
+      Too Many Values!
+      <br>
+      Remove before inserting again!
+    </div>
+    <div *ngIf = "tooMuch == 0.5" class ="cap">
+      You hit the size cap!
+      <br>
+    </div>
+      <canvas id="Canvas" width="1920" height="1080"></canvas>
+    </div>
