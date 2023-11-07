@@ -21,7 +21,7 @@ export class binaryHeap{
         this.array[this.size] =  value;
         
         let speech = new textToSpeech();
-        speech.speakText("I add the node at the end");
+        await speech.speakText("I add the node at the end");
         await this.draw([this.size], "Blue");
         //will use this in order to make it work for both a min heap and a max heap
         let term = -1;
@@ -33,9 +33,9 @@ export class binaryHeap{
         var position = this.size;
         if(position != 1 && this.array[Math.floor(position/2)]*term > this.array[position]*term){
             if(this.minimum == true)
-                speech.speakText("While my father is bigger than me, i swap");
+                await speech.speakText("While my father is bigger than me, i swap");
             else
-                speech.speakText("While my father is smaller than me, i swap");
+                await speech.speakText("While my father is smaller than me, i swap");
         }
         while(position != 1 && this.array[Math.floor(position/2)]*term > this.array[position]*term){
             // if the position i'm on is smaller than it's father, i need to swap them
@@ -51,7 +51,7 @@ export class binaryHeap{
 
         [this.array[1], this.array[this.size]] = [this.array[this.size],this.array[1]];
         
-        speech.speakText("I swap the root with the last node and remove the last node");
+        await speech.speakText("I swap the root with the last node and remove the last node");
         
         await this.draw([1,this.size], "Green");
         await this.delay(10);
@@ -69,9 +69,9 @@ export class binaryHeap{
                 if(this.array[position]*term > Math.min(this.array[position*2]*term, this.array[position*2+1]*term)){
                     if(ok == 0){
                         if(this.minimum == true)
-                            speech.speakText("while my smallest child is smaller than me, i swap with him");
+                            await speech.speakText("while my smallest child is smaller than me, i swap with him");
                         else
-                            speech.speakText("while my biggest child is bigger than me, i swap with him");
+                            await speech.speakText("while my biggest child is bigger than me, i swap with him");
                         ok = 1;
                     }
                     if(this.array[position*2]*term < this.array[position*2+1]*term){
@@ -91,9 +91,9 @@ export class binaryHeap{
             else if(position*2 <=this.size && this.array[position] * term > this.array[position*2]*term){
                 if(ok == 0){
                     if(this.minimum == true)
-                            speech.speakText("while my smallest child is smaller than me, i swap with him");
+                            await speech.speakText("while my smallest child is smaller than me, i swap with him");
                         else
-                            speech.speakText("while my biggest child is bigger than me, i swap with him");
+                            await speech.speakText("while my biggest child is bigger than me, i swap with him");
                         ok = 1;
                 }
                 [this.array[position],this.array[position*2]] = [this.array[position*2], this.array[position]];

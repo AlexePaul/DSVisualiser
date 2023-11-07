@@ -40,25 +40,30 @@ export class binarySearchTree{
     }
 
     async insertValue(value:number, verbose:boolean = true){
-        var pos = 1;
+        var pos = this.root;
+        var position = 1;
         let speech = new textToSpeech();
         console.log("here");
-        if(this.array[pos] != null)
+        if(pos != null)
             await speech.speakText("If the insertValue is smaller than the current position i go left, otherwise right");
-        while(this.array[pos] != null){
+        while(pos != null){
             if(verbose == true)
-                await this.draw([pos], "Blue");
-            if(value > this.array[pos])
-                pos = pos * 2 + 1;
-            else if(value < this.array[pos])
-                pos = pos*2;
+                await this.draw([position], "Blue");
+            if(value > this.array[position]){
+                pos = pos?.right;
+                position = position * 2 + 1;
+            }
+            else if(value < this.array[position]){
+                pos = pos?.left;
+                position = position*2;
+            }
             else
                 break;
         }
         await speech.speakText("I found the position where the value should be");
-        this.array[pos] = value;
-        this.size = Math.max(pos, this.size);
-        await this.draw([pos], "Green");
+        pos = new nodeBST(value);
+        this.size = Math.max(position, this.size);
+        await this.draw([position], "Green");
     }
 
     async searchValue(value:number) : Promise<boolean>{
