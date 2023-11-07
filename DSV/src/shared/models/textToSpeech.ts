@@ -10,6 +10,6 @@ export class textToSpeech{
         utterance.rate = 1.6;
         const voices = this.speechSynthesis.getVoices();
         utterance.voice = voices[1];
-        this.speechSynthesis.speak(utterance);
+        await this.speechSynthesis.speak(utterance);
     }
 }

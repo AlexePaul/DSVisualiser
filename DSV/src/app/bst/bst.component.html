@@ -31,6 +31,16 @@
           >Cauta numar</button>
       </div>
     </form>
+    <form>
+      <div class ="row">
+        <input name = "RemoveValue" type="number" [(ngModel)]="this.valueRemove">
+        <button 
+          type = "submit"  
+          [disabled]="this.disabled"
+          (click) = "$event.preventDefault(); this.remove(); this.draw([],'')"
+          >Scoate numar</button>
+      </div>
+    </form>
     <div *ngIf = "tooMuch == 1" class ="tooMany">
       Too Many Values!
       <br>

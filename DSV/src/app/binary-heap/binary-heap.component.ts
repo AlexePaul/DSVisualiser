@@ -136,7 +136,7 @@ export class BinaryHeapComponent {
     var size = this.bHeap.size;  
     var step = 0;
     var counter = 1;
-    var circleRadius = 32 * windowWidth / 1080;
+    var circleRadius = 16 * windowWidth / 1080;
     
     if(ctx == null)
     return new Promise(resolve => setTimeout(resolve, 1));
@@ -160,11 +160,15 @@ export class BinaryHeapComponent {
           ctx.stroke();
 
           if(i==0){
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle"; 
             ctx.font = "16px Tahoma";
             ctx.fillStyle = myColor;
             ctx.fillText(String(this.bHeap.array[counter++]),space,150*(step+1));
           }
           else{
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle"; 
             ctx.font = "16px Tahoma";
             ctx.fillStyle = myColor;
             ctx.fillText(String(this.bHeap.array[counter++]),space + 2*space*i,150*(step+1));
@@ -180,11 +184,15 @@ export class BinaryHeapComponent {
             this.fadingCircle(counter, specialColor, myColor);
           }
           if(i==0){
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle"; 
             ctx.font = "16px Tahoma";
             ctx.fillStyle = myColor;
             ctx.fillText(String(this.bHeap.array[counter++]),space,150*(step+1));
           }
           else{
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle"; 
             ctx.font = "16px Tahoma";
             ctx.fillStyle = myColor;
             ctx.fillText(String(this.bHeap.array[counter++]),space + 2*space*i,150*(step+1));

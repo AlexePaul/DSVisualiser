@@ -8,6 +8,7 @@ import { binarySearchTree } from 'src/shared/models/binarySearchTree';
 export class BstComponent {
   valueInsert : number = 0;
   valueSearch : number = 0;
+  valueRemove : number = 0;
   bst: binarySearchTree;
   tooMuch: number = 0;
   animation: boolean = false;
@@ -161,11 +162,15 @@ export class BstComponent {
             ctx.stroke();
 
             if(i==0){
+              ctx.textAlign = "center";
+              ctx.textBaseline = "middle";  
               ctx.font = "16px Tahoma";
               ctx.fillStyle = myColor;
               ctx.fillText(String(this.bst.array[counter++]),space,150*(step+1));
             }
             else{
+              ctx.textAlign = "center";
+              ctx.textBaseline = "middle"; 
               ctx.font = "16px Tahoma";
               ctx.fillStyle = myColor;
               ctx.fillText(String(this.bst.array[counter++]),space + 2*space*i,150*(step+1));
@@ -222,12 +227,12 @@ export class BstComponent {
     let maxAmount = Math.max(31 * window.innerWidth / 1920,31 * window.innerHeight / 1080);
     while(this.only1binary(maxAmount) == false)
       maxAmount--;
-    if(this.bst.size < maxAmount){
+    if(this.bst.simulateInsertion(this.valueInsert) < maxAmount + 1){
       await this.bst.insertValue(this.valueInsert);
       if(this.bst.size == maxAmount)
         this.tooMuch = 0.5;
     }
-    else if(this.bst.size == maxAmount && this.tooMuch == 0)
+    else if(this.bst.simulateInsertion(this.valueInsert) == maxAmount + 1 && this.tooMuch == 0)
       this.tooMuch = 0.5;
     else
       this.tooMuch = 1;
@@ -236,7 +241,7 @@ export class BstComponent {
   }
   async remove(){
     this.disabled = true;
-    //await this.bst.removeRoot();
+    await this.bst.removeValue(this.valueRemove);
     this.tooMuch = 0;
     this.draw([], "");
     this.disabled = false;
@@ -258,12 +263,12 @@ export class BstComponent {
     let maxAmount = Math.max(31 * window.innerWidth / 1920,31 * window.innerHeight / 1080);
     while(this.only1binary(maxAmount) == false)
       maxAmount--;
-    if(this.bst.size < maxAmount){
+    if(this.bst.simulateInsertion(value) < maxAmount+1){
       await this.bst.insertValue(value, verbose);
       if(this.bst.size == maxAmount)
         this.tooMuch = 0.5;
     }
-    else if(this.bst.size == maxAmount && this.tooMuch == 0)
+    else if(this.bst.simulateInsertion(value) == maxAmount+1 && this.tooMuch == 0)
       this.tooMuch = 0.5;
     else
       this.tooMuch = 1;
@@ -274,7 +279,6 @@ export class BstComponent {
   async insertArrayOrdered(values : number[], idxlft : number, idxrt : number){
     if(idxlft > idxrt)
       return;
-    console.log(idxlft + " " + idxrt);
     let middle = Math.floor((idxlft+idxrt) /2);
     this.insertValue(values[middle], false);
     this.insertArrayOrdered(values, idxlft, middle-1);

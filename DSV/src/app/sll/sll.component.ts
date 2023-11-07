@@ -147,9 +147,11 @@ export class SllComponent {
 
       // Pun numarul in patrate
       for(let i = 0; i < this.SLLAsArray.length; i++){
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle"; 
         ctx.font = rectangleHeight/3+"px Tahoma";
         ctx.fillStyle=myColor;
-        ctx.fillText(String(this.SLLAsArray[i].value),  space*((i)%(maxPerRow)+1)-rectangleWidth/2, (1 + Math.floor((i)/(maxPerRow)))*40+Math.floor((i)/(maxPerRow))*rectangleHeight + 11*rectangleHeight/16);
+        ctx.fillText(String(this.SLLAsArray[i].value),  space*((i)%(maxPerRow)+1) - rectangleWidth/8, (1 + Math.floor((i)/(maxPerRow)))*40+Math.floor((i)/(maxPerRow))*rectangleHeight + rectangleHeight/2);
       }
 
       //desenez sagetile
