@@ -94,6 +94,7 @@ export class BstComponent {
       return;
     let value = 255;
     while(value > 128){
+      console.log(value);
       var x = this.position[i][0];
       var y = this.position[i][1];
       var circleRadius = this.position[i][2];
@@ -140,7 +141,7 @@ export class BstComponent {
     var counter = 1;
     var circleRadius = 16 * windowWidth / 1080;
     if(ctx == null)
-    return new Promise(resolve => setTimeout(resolve, 1));
+    return new Promise(resolve => setTimeout(resolve, 10));
     
     ctx.canvas.width  = windowWidth;
     ctx.canvas.height = windowHeight;
@@ -186,11 +187,15 @@ export class BstComponent {
               this.fadingCircle(counter, specialColor, myColor);
             }
             if(i==0){
+              ctx.textAlign = "center";
+              ctx.textBaseline = "middle";
               ctx.font = "16px Tahoma";
               ctx.fillStyle = myColor;
               ctx.fillText(String(this.bst.array[counter++]),space,150*(step+1));
             }
             else{
+              ctx.textAlign = "center";
+              ctx.textBaseline = "middle";
               ctx.font = "16px Tahoma";
               ctx.fillStyle = myColor;
               ctx.fillText(String(this.bst.array[counter++]),space + 2*space*i,150*(step+1));
@@ -210,7 +215,7 @@ export class BstComponent {
     while(this.animation == true){
       await this.delay(1);
     }
-    return new Promise(resolve => setTimeout(resolve, 1));
+    return new Promise(resolve => setTimeout(resolve, 10));
   }
 
   only1binary(value : number) : boolean{
@@ -255,8 +260,8 @@ export class BstComponent {
   }
 
   checkString(string : any) {
-    return /^[0-9]*$/.test(string);
-}
+    return /^-?\d+(\.\d+)?$/.test(string);
+  }
 
   async insertValue(value: number, verbose: boolean){
     this.disabled = true;
@@ -293,7 +298,7 @@ export class BstComponent {
         if(this.checkString(value))
           checkedValues.push(parseInt(value));
     }
-    
+    checkedValues.sort((a,b)=>a-b);
     await this.insertArrayOrdered(checkedValues, 0 , checkedValues.length - 1);
     this.disabled = false;
   }
