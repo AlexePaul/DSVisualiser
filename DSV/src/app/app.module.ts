@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { BinaryHeapComponent } from './binary-heap/binary-heap.component';
 import { HomeComponent } from './home/home.component';
 import { BstComponent } from './bst/bst.component';
+import { HashTableComponent } from './hash-table/hash-table.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { BstComponent } from './bst/bst.component';
     SllComponent,
     BinaryHeapComponent,
     HomeComponent,
-    BstComponent
+    BstComponent,
+    HashTableComponent
   ],
   imports: [
     BrowserModule,

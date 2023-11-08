@@ -1,0 +1,13 @@
+<div class="wrapper" (window:resize) = "this.draw([],'')">
+    <form>
+        <div class ="row">
+          <input name = "InsertValue" type="number" [(ngModel)]="this.valueInsert">
+          <button 
+            type = "submit"  
+            [disabled]="this.disabled"
+            (click) = "$event.preventDefault(); this.insert(); this.draw([],'')"
+            >Adauga numar</button>
+        </div>
+      </form>
+    <canvas id="Canvas" width="1920" height="1080"></canvas>
+</div>

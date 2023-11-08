@@ -1,0 +1,89 @@
+.wrapper{
+    width:100% - 3rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+form{
+    text-align: center;
+}
+
+input[type="number"]{
+    -webkit-appearance: none;
+    appearance:inherit;
+    -moz-appearance: textfield;
+}
+
+button, input, select{
+    width: 41.66667%;
+    padding: 0.25rem;
+    margin-top: 0.5rem;
+    border-radius: 0.5rem;
+    border-width: 1px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    border-color: var(--clr-accent);
+    background-color: var(--clr-secondary);
+    color: var(--clr-text);
+    &:hover{
+        border-color: var(--clr-big-accent);
+    }
+}
+
+canvas{
+    width:100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+}
+
+.row{
+    display:flex;
+    margin-left:auto;
+    margin-right:auto;
+    justify-content: space-between;
+    width: 33.33333%;
+}
+
+.list{
+    display:grid;
+    margin-left:auto;
+    margin-right:auto;
+    width: 33.33333%;
+}
+
+.list input{
+    width:100%;
+}
+
+.list > *{
+    margin-left:auto;
+    margin-right: auto;
+    width:100%;
+}
+
+.tooMany{
+    color:red;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    margin-top:1rem;
+}
+
+.cap{
+    color:orange;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    margin-top:1rem; 
+}
+
+@media (min-width:768px){
+    button, input, select{
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+}
