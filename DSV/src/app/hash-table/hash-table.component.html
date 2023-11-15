@@ -1,12 +1,28 @@
-<div class="wrapper" (window:resize) = "this.draw([],'')">
+<div class="wrapper" (window:resize) = "this.draw(-1, [],'')">
     <form>
         <div class ="row">
-          <input name = "InsertValue" type="number" [(ngModel)]="this.valueInsert">
+          <input name = "InsertValue" type="number" [(ngModel)]="this.value">
           <button 
             type = "submit"  
             [disabled]="this.disabled"
-            (click) = "$event.preventDefault(); this.insert(); this.draw([],'')"
+            (click) = "$event.preventDefault(); this.insert();"
             >Adauga numar</button>
+        </div>
+        <div class="row">
+          <button
+            type = "submit"  
+            [disabled]="this.disabled"
+            (click) = "$event.preventDefault(); this.remove();"
+          >Scoate Numar</button>
+          <button
+            type = "submit"  
+            [disabled]="this.disabled"
+            (click) = "$event.preventDefault(); this.search();"
+          >Cauta Numar</button>
+        </div>
+        <div class="modulo">
+          <h1>Change Modulo</h1>
+          <input name ="modulo" type="number" [(ngModel)] ="this.modulo" (ngModelChange) ="this.checkModulo()">
         </div>
       </form>
     <canvas id="Canvas" width="1920" height="1080"></canvas>
