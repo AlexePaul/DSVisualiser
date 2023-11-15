@@ -49,7 +49,10 @@ export class HashTableComponent {
     var windowHeight = window.innerHeight;
     var rectangleHeight = (windowHeight*50)/1080;
     var rectangleWidth = (windowWidth*100)/1920;
-  
+    
+    if(rectangleHeight > rectangleWidth)
+      [rectangleHeight, rectangleWidth] = [rectangleWidth, rectangleHeight];
+
     if(ctx == null)
       return;
 

@@ -3,27 +3,57 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face{
+    font-family:'Roboto';
+    src: url('assets/fonts/RobotoCondensed-VariableFont_wght.ttf') format('ttf');
+    font-weight: 125 950;
+    font-style: normal;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans&family=Work+Sans:wght@600;700&display=swap');
+
 :root{
-    --clr-text: hsl(300, 20%, 1%);
-    --clr-background: hsl(300, 3%, 94%);
-    --clr-primary: hsl(0, 3%, 66%);
-    --clr-secondary: hsl(30, 3%, 85%);
-    --clr-accent: hsl(26, 3%, 45%);
+    --clr-text: rgb(4, 4, 6);
+    --clr-background: rgb(242, 244, 248);
+    --clr-primary: rgb(194, 178, 148);
+    --clr-secondary: rgb(237, 237, 237);
+    --clr-accent: rgb(168, 148, 103);
     --clr-big-accent: hsl(0, 0%, 0%);
 
 }
 
 @media (prefers-color-scheme: dark){
     :root{
-        --clr-text: hsl(300, 20%, 99%);
-        --clr-background: hsl(300, 3%, 6%);
-        --clr-primary: hsl(0, 3%, 34%);
-        --clr-secondary: hsl(30, 3%, 15%);
-        --clr-accent: hsl(26, 3%, 55%);
+        --clr-text: rgb(249, 249, 251);
+        --clr-background: rgb(25, 25, 25);
+        --clr-primary: rgb(107, 91, 61);
+        --clr-secondary: rgb(19, 19, 19);
+        --clr-accent: rgb(152, 133, 87);
         --clr-big-accent: hsl(0, 0%, 100%);
     }
 }
 
 body {
     background-color: var(--clr-background);
+}
+
+h1{
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 600;
+}
+
+p{
+    font-family: 'Merriweather Sans', sans-serif;
+    font-weight: 400;
+}
+
+a{
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 700;
+
+}
+
+button{
+    font-family: 'Merriweather Sans', sans-serif;
+    font-weight: 400;
 }
