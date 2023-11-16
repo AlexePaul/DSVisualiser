@@ -49,6 +49,9 @@ export class hashTable{
             }
         this.hashFunction = hashFunction;
         this.maxValue = maxValue;
+        for(let i = 0; i < maxValue; i++){
+            this.array[i] = [];
+        }
     }
 
 }

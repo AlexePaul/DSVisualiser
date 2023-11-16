@@ -7,7 +7,7 @@ export class textToSpeech{
 
     async speakText(Text:string) {
         const utterance = new SpeechSynthesisUtterance(Text);
-        utterance.rate = 1.6;
+        utterance.rate = 1;
         utterance.lang = "en-US"
         const voices = this.speechSynthesis.getVoices().filter(voice => voice.lang === "en-US");
         if(voices.length < 24)
