@@ -74,7 +74,6 @@ export class binarySearchTree{
         this.size = Math.max(position, this.size);
         if(verbose == true)
             await this.draw([position], "Green");
-        console.log(this.array);
     }
 
     async searchValue(value:number, verbose:boolean = true) : Promise<{node:nodeBST | null, position:number}>{
@@ -86,17 +85,11 @@ export class binarySearchTree{
         while(pos != null){
             await this.draw([position], "Blue");
             if(value > pos.value){
-                if(pos.right != null)
-                    pos = pos.right;
-                else
-                    pos.right = new nodeBST(value, pos);
+                pos = pos.right;
                 position = position * 2 + 1;
             }
             else if(value < pos.value){
-                if(pos.left != null)
-                    pos = pos.left;
-                else
-                    pos.left = new nodeBST(value, pos);
+                pos = pos.left;
                 position = position*2;
             }
             else

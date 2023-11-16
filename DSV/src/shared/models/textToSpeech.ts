@@ -15,5 +15,8 @@ export class textToSpeech{
         else
             utterance.voice = voices[24];
         await this.speechSynthesis.speak(utterance);
+        speechSynthesis.getVoices().forEach((voice) => {
+            console.log(voice.name, voice.lang)
+          })
     }
 }

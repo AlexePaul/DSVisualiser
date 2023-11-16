@@ -94,7 +94,6 @@ export class BstComponent {
       return;
     let value = 255;
     while(value > 128){
-      console.log(value);
       var x = this.position[i][0];
       var y = this.position[i][1];
       var circleRadius = this.position[i][2];
