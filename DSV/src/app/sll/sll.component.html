@@ -1,5 +1,23 @@
-<div class="wrapper" (window:resize) = "this.draw()">
-  <!--> <h1>Inserare</h1> <-->
+<div class="wrapper text-center" (window:resize) = "this.draw()">
+  <h1 class="title">Lista Simplu Inlantuita</h1>
+  <div class="operationContainer">
+    <div class="operation">
+      <h1>Inserare la inceputul listei</h1>
+      <p>Inserarea la inceputul listei este o operatie in O(1), creez un element si actualizez capul listei</p>
+    </div>
+    <div class="operation">
+      <h1>Inserare la sfarsitul listei</h1>
+      <p>Inserarea la sfarsitul listei este o operatie in O(N), deoarece trebuie sa parcurg toata lista</p>
+    </div>
+    <div class="operation">  
+      <h1>Stergerea de la inceputul listei</h1>
+      <p>stergerea de la inceputul listei este o operatie in O(1), actualizez capul ca fiind urmatorul element</p>
+    </div>
+    <div class="operation">
+      <h1>Stergere de la sfarsitul listei</h1>
+      <p>stergerea de la sfarsitul listei este o operatie in O(N), deoarece trebuie sa parcurg toata lista</p>
+    </div>
+  </div>
   <form class="text-center">
     <input name = "InsertValue" type="number" [(ngModel)]="this.value">
     <br>

@@ -9,7 +9,6 @@ button, input{
     margin-top: 0.5rem;
     border-radius: 0.5rem;
     border-width: 1px;
-    font-weight: 700;
     font-size: 0.75rem;
     line-height: 1rem;
     border-color: var(--clr-accent);
@@ -36,9 +35,13 @@ h1{
     color: var(--clr-text);
 }
 
+p{
+    color: var(--clr-text);
+}
+
 input{
     text-align: left;
-    width: 33.33333%;
+    width: 50%;
     margin-left:auto;
     margin-right:auto;
 }
@@ -48,7 +51,42 @@ input{
     margin-left:auto;
     margin-right:auto;
     justify-content: space-between;
-    width: 33.33333%;
+    width: 50%;
+}
+
+.title{
+    display:inline-block;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:1rem;
+    font-size: 1.5rem;
+    line-height: 1rem;
+}
+
+.operationContainer{
+    display:grid;
+    margin:1rem;
+    margin-left: auto;
+    margin-right:auto;
+    gap:0.5rem;
+    width:50%;
+    column-gap: 0.5rem;
+    grid-template-columns: auto;
+}
+
+.operation{
+    display:inline-grid;
+    padding:1rem;
+    border-radius: 0.5rem;
+    border-width: 1px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--clr-secondary);
+    border-color: var(--clr-accent);
+}
+
+.operation h1{
+    font-size:1.1rem;
 }
 
 canvas{
@@ -62,5 +100,20 @@ canvas{
     button, input{
         font-size: 1rem;
         line-height: 1.5rem;
+    }
+    .title{
+        font-size: 2rem;
+    }
+    input{
+        width:50%
+    }
+    .row{
+        width:50%;
+    }
+}
+
+@media (min-width:1000px){
+    .operationContainer{
+        grid-template-columns: auto auto;
     }
 }
