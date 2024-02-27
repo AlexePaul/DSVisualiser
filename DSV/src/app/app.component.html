@@ -1,28 +1,39 @@
 <ng-template #Links>
-  <a (click) = "this.isMenuOpen = false" routerLink="">Home</a>
-  <a (click) = "this.isMenuOpen = false" routerLink="simplelinkedlist">SimpleLinkedList</a>
-  <a (click) = "this.isMenuOpen = false" routerLink="binaryheap">Heap</a>
-  <a (click) = "this.isMenuOpen = false" routerLink="binarysearchtree">BinarySearchTree</a>
-  <a (click) = "this.isMenuOpen = false" routerLink="hashtable">HashTable</a>
+  <a class="home" (click)="this.isMenuOpen = false" routerLink="">DSV</a>
+  <a
+    class="link"
+    (click)="this.isMenuOpen = false"
+    routerLink="simplelinkedlist"
+    >Linked List</a
+  >
+  <a class="link" (click)="this.isMenuOpen = false" routerLink="binaryheap"
+    >Heap</a
+  >
+  <a
+    class="link"
+    (click)="this.isMenuOpen = false"
+    routerLink="binarysearchtree"
+    >Binary Tree</a
+  >
+  <a class="link" (click)="this.isMenuOpen = false" routerLink="hashtable"
+    >Hash Table</a
+  >
 </ng-template>
 
-<div class= "wrapper" (window:resize) = "this.checkHamburger()">
+<div class="wrapper" (window:resize)="this.checkHamburger()">
   <nav *ngIf="this.hamburger == false; else hamburgerMenu" class="navigation">
     <ng-container *ngTemplateOutlet="Links"></ng-container>
   </nav>
-
-  <ng-template #hamburgerMenu> 
-
+  <ng-template #hamburgerMenu>
     <div class="hamburger-menu" (click)="this.isMenuOpen = !this.isMenuOpen">
       <div class="bar"></div>
       <div class="bar"></div>
       <div class="bar"></div>
     </div>
 
-    <div class="menu" [ngClass]="{ 'open': isMenuOpen }">
+    <div class="menu" [ngClass]="{ open: isMenuOpen }">
       <ng-container *ngTemplateOutlet="Links"></ng-container>
     </div>
-
   </ng-template>
 </div>
 

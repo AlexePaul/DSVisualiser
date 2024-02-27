@@ -1,115 +1,82 @@
-.wrapper{
-    width:100% - 3rem;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 button, input{
-    padding: 0.25rem;
-    margin-top: 0.5rem;
-    border-radius: 0.5rem;
-    border-width: 1px;
-    font-size: 0.75rem;
-    line-height: 1rem;
     border-color: var(--clr-accent);
     background-color: var(--clr-secondary);
     color: var(--clr-text);
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--clr-secondary);
 }
-
 input[type="number"]{
     -webkit-appearance: none;
     appearance:inherit;
     -moz-appearance: textfield;
 }
-
 button:hover,
 input:hover{
     border-color: var(--clr-big-accent);
 }
-
-button{
-    width:41.66667%;
-}
-
-h1{
+h1,p{
     color: var(--clr-text);
 }
 
-p{
-    color: var(--clr-text);
-}
-
-input{
-    text-align: left;
-    width: 50%;
-    margin-left:auto;
-    margin-right:auto;
-}
-
-.row{
-    display:flex;
-    margin-left:auto;
-    margin-right:auto;
-    justify-content: space-between;
-    width: 50%;
-}
-
-.title{
-    display:inline-block;
-    margin-left:auto;
-    margin-right:auto;
-    margin-top:1rem;
-    font-size: 1.5rem;
-    line-height: 1rem;
-}
-
-.operationContainer{
-    display:grid;
-    margin:1rem;
-    margin-left: auto;
-    margin-right:auto;
-    gap:0.5rem;
-    width:50%;
-    column-gap: 0.5rem;
-    grid-template-columns: auto;
-}
-
-.operation{
-    display:inline-grid;
-    padding:1rem;
-    border-radius: 0.5rem;
-    border-width: 1px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: var(--clr-secondary);
-    border-color: var(--clr-accent);
-}
-
-.operation h1{
-    font-size:1.1rem;
-}
-
-canvas{
+.wrapper{
+    display: flex;
     width:100%;
     margin-left: auto;
     margin-right: auto;
-    margin: 2.5rem;
+    text-align: justify;
+    justify-content: space-between;
+}
+
+.interactions{
+    display: inline-block;
+    text-align: center;
+    padding-top: 1rem;
+    padding-right: 2rem;
+    padding: 3rem;
+    width:20%;
+    background-color: var(--clr-secondary);
+    border-radius: 25px;
+    margin-right:2rem;
+}
+
+canvas{
+    display: inline-block;
+    width: 70%;
+    height:100%;
+    margin-top: 2rem;
+    margin-left: 2rem;
+}
+
+button{
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    width:90%;
+    padding:1rem;
+    background-color: var(--clr-primary);
+    border-radius: 20px;
+    margin-top:1rem;
+}
+
+input{
+    background-color: white;
+    color:black;
+    width:90%;
+    padding: 1rem;
+    border-radius: 20px;
+}
+
+.title{
+  color: var(--clr-text);
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1.25rem;
+  margin-bottom: 3rem;
 }
 
 @media (min-width:768px){
-    button, input{
-        font-size: 1rem;
-        line-height: 1.5rem;
-    }
-    .title{
-        font-size: 2rem;
-    }
-    input{
-        width:50%
-    }
-    .row{
-        width:50%;
-    }
+    
 }
 
 @media (min-width:1000px){

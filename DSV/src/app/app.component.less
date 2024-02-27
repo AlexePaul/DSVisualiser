@@ -1,22 +1,52 @@
 
 .wrapper{
-    background-color: var(--clr-primary);
+    background-color: var(--clr-background);
 }
 
-.wrapper nav a{
+nav{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  overflow: auto;
+}
+
+.wrapper nav .link{
     color: var(--clr-text);
+    background-color: var(--clr-primary);
+    width: 15%;
+    text-align: center;
+    border-radius: 10rem;
+    border-width: 1px;
+    border-color: var(--clr-primary);
+    padding-top: 2px;
+    padding-bottom: 2px;
+    &:hover{
+      border-color: var(--clr-big-accent);
+  }
 }
 
 .navigation{
     padding:1.25rem;
-    margin-left:2.5rem;
+    padding-right: 0px;
 }
 
 a{
-    font-weight: 700;
     font-size: 1rem;
     line-height: 1.25rem;
     margin:0.5rem;
+}
+
+.home{
+  color: var(--clr-text);
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 1.25rem;
+  margin-top: 1rem;
+  margin:0.5rem;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-color: var(--clr-background);
 }
 
 .hamburger-menu {
@@ -31,11 +61,11 @@ a{
     height: 5rem;
   }
   
-  .bar {
-    background-color: var(--clr-text);
-    height: 5px;
-    width: 100%;
-  }
+.bar {
+  background-color: var(--clr-text);
+  height: 5px;
+  width: 100%;
+}
 
 .menu {
     display: none;
@@ -47,20 +77,20 @@ a{
     border: 1px solid var(--clr-accent);
   }
   
-  .menu a {
-    padding: 15px;
-    text-decoration: none;
-    color: var(--clr-text);
-  
-    &:hover{
-        padding:14px;
-        border: 1px solid var(--clr-accent);
-    }
-    }
+.menu a {
+  padding: 15px;
+  text-decoration: none;
+  color: var(--clr-text);
 
-  .menu.open {
-    display: flex;
+  &:hover{
+      padding:14px;
+      border: 1px solid var(--clr-accent);
   }
+}
+
+.menu.open {
+  display: flex;
+}
 
 @media (min-width: 768px){
     a{

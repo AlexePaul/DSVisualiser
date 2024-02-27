@@ -3,32 +3,26 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face{
-    font-family:'Roboto';
-    src: url('assets/fonts/RobotoCondensed-VariableFont_wght.ttf') format('ttf');
-    font-weight: 125 950;
-    font-style: normal;
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300;0,400;1,300;1,400&family=Work+Sans:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root{
-    --clr-text: rgb(4, 4, 6);
-    --clr-background: rgb(242, 244, 248);
-    --clr-primary: rgb(194, 178, 148);
-    --clr-secondary: rgb(237, 237, 237);
-    --clr-accent: rgb(168, 148, 103);
+    --clr-text: hsl(30, 11%, 7%);
+    --clr-background: hsl(30, 14%, 97%);
+    --clr-primary: hsl(37, 11%, 52%);
+    --clr-secondary: hsl(112, 10%, 70%);
+    --clr-accent: hsl(139, 10%, 65%);
     --clr-big-accent: hsl(0, 0%, 0%);
 
 }
 
 @media (prefers-color-scheme: dark){
     :root{
-        --clr-text: rgb(249, 249, 251);
-        --clr-background: rgb(25, 25, 25);
-        --clr-primary: rgb(107, 91, 61);
-        --clr-secondary: rgb(19, 19, 19);
-        --clr-accent: rgb(152, 133, 87);
+        --clr-text: hsl(0, 7%, 97%);
+        --clr-background: hsl(320, 6%, 10%);
+        --clr-primary: hsl(80, 4%, 56%);
+        --clr-secondary: hsl(320, 5%, 12%);
+        --clr-accent: hsl(200, 4%, 52%);
         --clr-big-accent: hsl(0, 0%, 100%);
     }
 }
@@ -38,27 +32,37 @@ body {
 }
 
 h1{
-    font-family: 'Work Sans', sans-serif;
+    font-family: "Work Sans", sans-serif;
+    font-optical-sizing: auto;
     font-weight: 600;
+    font-style: normal;
 }
 
 p, span{
-    font-family: 'Merriweather Sans', sans-serif;
+    font-family: "Merriweather Sans", sans-serif;
+    font-optical-sizing: auto;
     font-weight: 300;
+    font-style: normal;
 }
 
 a{
-    font-family: 'Work Sans', sans-serif;
-    font-weight: 700;
+    font-family: "Work Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
 
 }
 
 button, input, select{
-    font-family: 'Merriweather Sans', sans-serif;
+    font-family: "Merriweather Sans", sans-serif;
+    font-optical-sizing: auto;
     font-weight: 300;
+    font-style: normal;
 }
 
 button{
-    font-family: 'Merriweather Sans', sans-serif;
+    font-family: "Merriweather Sans", sans-serif;
+    font-optical-sizing: auto;
     font-weight: 400;
+    font-style: normal;
 }
