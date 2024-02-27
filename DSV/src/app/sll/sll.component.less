@@ -38,6 +38,7 @@ h1,p{
     background-color: var(--clr-secondary);
     border-radius: 25px;
     margin-right:2rem;
+    order:2;
 }
 
 canvas{
@@ -46,6 +47,7 @@ canvas{
     height:100%;
     margin-top: 2rem;
     margin-left: 2rem;
+    order:1;
 }
 
 button{
@@ -75,8 +77,38 @@ input{
   margin-bottom: 3rem;
 }
 
-@media (min-width:768px){
+@media (max-width:999px){
+    .title{
+        margin-bottom:1rem;
+    }
+    .interactions{
+        padding: 1rem;
+        padding-bottom: 2rem; 
+    }
+    .wrapper{
+        display: block;
+        width: 85%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .interactions{
+        display: inline-block;
+        width:100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
     
+    canvas{
+        display: inline-block;
+        width: 100%;
+        height:100%;
+        margin-top: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    button, input{
+        padding: 0.5rem;
+    }
 }
 
 @media (min-width:1000px){
