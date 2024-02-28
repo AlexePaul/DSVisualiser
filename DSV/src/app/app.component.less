@@ -1,6 +1,7 @@
 
 .wrapper{
     background-color: var(--clr-background);
+    text-align: center;
 }
 
 nav{
@@ -32,9 +33,9 @@ nav{
 }
 
 a{
-    font-size: 1rem;
-    line-height: 1.25rem;
-    margin:0.5rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem; 
+  margin:0.5rem;
 }
 
 .home{
@@ -54,8 +55,8 @@ a{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-left: auto;
-    margin-right: 2rem;
+    margin-right: auto;
+    margin-left: 2rem;
     padding:1.25rem;
     width: 5rem;
     height: 5rem;
@@ -65,17 +66,20 @@ a{
   background-color: var(--clr-text);
   height: 5px;
   width: 100%;
+  border-radius: 10px;
 }
 
 .menu {
+    position: absolute;
     display: none;
     flex-direction: column;
-    position: absolute;
-    left: 0;
-    width: 100%;
-    background-color: var(--clr-background);
+    left: 5%;
+    z-index: 1;
+    width: 90%;
+    border-radius: 1rem;
+    background-color: var(--clr-secondary);
     border: 1px solid var(--clr-accent);
-  }
+}
   
 .menu a {
   padding: 15px;
@@ -90,11 +94,4 @@ a{
 
 .menu.open {
   display: flex;
-}
-
-@media (min-width: 768px){
-    a{
-        font-size: 1.25rem;
-        line-height: 1.75rem; 
-    }
 }

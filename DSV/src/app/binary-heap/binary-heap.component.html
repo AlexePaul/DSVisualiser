@@ -1,40 +1,42 @@
-<div class="wrapper" (window:resize) = "this.draw([],'')">
-  
+<div class="wrapper" (window:resize)="this.draw([], '')">
+  <div class="interactions">
+    <h1 class="title">Binary Heap</h1>
     <form>
-      <div class ="row">
-        <input name = "InsertValue" type="number"[(ngModel)]="this.value">
-        <button 
-          type = "submit"  
-          [disabled]="this.disabled"
-          (click) = "$event.preventDefault(); this.insert(); this.draw([],'')"
-          >Adauga numar</button>
-      </div>
+      <input name="InsertValue" type="number" [(ngModel)]="this.value" />
+      <button
+        type="submit"
+        [disabled]="this.disabled"
+        (click)="$event.preventDefault(); this.insert(); this.draw([], '')"
+      >
+        Adauga numar
+      </button>
     </form>
-    <div class="row">
-      <select
-      [disabled]="this.disabled" 
+    <select
+      [disabled]="this.disabled"
       [(ngModel)]="this.bHeap.minimum"
       (ngModelChange)="this.bHeap.size = 0; this.draw([], '')"
-      >
+    >
       <option [ngValue]="true">Min-Heap</option>
       <option [ngValue]="false">Max-Heap</option>
     </select>
-      <button 
-      [disabled]="this.disabled" 
-      (click) = "$event.preventDefault(); this.remove(); this.draw([],'')"
-      >
-      <div *ngIf = "this.bHeap.minimum == true">Scoate minimul</div>
-      <div *ngIf = "this.bHeap.minimum != true">Scoate maximul</div>
-      </button>
-    </div>
-    <div *ngIf = "tooMuch == 1" class ="tooMany">
+    <button
+      [disabled]="this.disabled"
+      (click)="$event.preventDefault(); this.remove(); this.draw([], '')"
+    >
+      <div *ngIf="this.bHeap.minimum == true; else maxHeap">Scoate minimul</div>
+      <ng-template #maxHeap>
+        <div>Scoate maximul</div>
+      </ng-template>
+    </button>
+    <div *ngIf="tooMuch == 1" class="tooMany">
       Too Many Values!
-      <br>
+      <br />
       Remove before inserting again!
     </div>
-    <div *ngIf = "tooMuch == 0.5" class ="cap">
+    <div *ngIf="tooMuch == 0.5" class="cap">
       You hit the size cap!
-      <br>
+      <br />
     </div>
-      <canvas id="Canvas" width="1920" height="1080"></canvas>
-    </div>
+  </div>
+  <canvas id="Canvas" width="1920" height="1080"></canvas>
+</div>
