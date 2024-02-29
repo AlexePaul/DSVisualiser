@@ -6,10 +6,17 @@ button, input{
     border-width: 1px;
     border-color: var(--clr-secondary);
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+    display:none;
+}
+
 input[type="number"]{
     -webkit-appearance: none;
     appearance:inherit;
     -moz-appearance: textfield;
+    scrollbar-width: none;
 }
 button:hover,
 input:hover{
