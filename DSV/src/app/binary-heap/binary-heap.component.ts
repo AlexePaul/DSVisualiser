@@ -136,7 +136,7 @@ export class BinaryHeapComponent {
     var size = this.bHeap.size;  
     var step = 0;
     var counter = 1;
-    var circleRadius = 16 * windowWidth / 1080;
+    var circleRadius = 24 * windowWidth / 1080;
     
     if(ctx == null)
     return new Promise(resolve => setTimeout(resolve, 1));

@@ -14,16 +14,13 @@ select{
     appearance: none;
 }
 
-button, input, select{
+button, input{
     border-color: var(--clr-accent);
     background-color: var(--clr-secondary);
     color: var(--clr-text);
-}
-
-button:hover,
-input:hover,
-select:hover{
-    border-color: var(--clr-big-accent);
+    &:hover{
+        border-color: var(--clr-big-accent);
+    }
 }
 
 canvas{
@@ -90,7 +87,7 @@ canvas{
     order:1;
 }
 
-button,select{
+button{
     display:block;
     margin-left:auto;
     margin-right:auto;
@@ -107,6 +104,7 @@ input{
     width:90%;
     padding: 1rem;
     border-radius: 20px;
+    margin-top: 1rem;
 }
 
 .title{

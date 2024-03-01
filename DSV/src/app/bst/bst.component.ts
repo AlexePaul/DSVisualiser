@@ -6,9 +6,7 @@ import { binarySearchTree } from 'src/shared/models/binarySearchTree';
   styleUrls: ['./bst.component.less']
 })
 export class BstComponent {
-  valueInsert : number = 0;
-  valueSearch : number = 0;
-  valueRemove : number = 0;
+  value : number = 0;
   bst: binarySearchTree;
   tooMuch: number = 0;
   animation: boolean = false;
@@ -138,7 +136,7 @@ export class BstComponent {
     var size = this.bst.size;  
     var step = 0;
     var counter = 1;
-    var circleRadius = 16 * windowWidth / 1080;
+    var circleRadius = 24 * windowWidth / 1080;
     if(ctx == null)
     return new Promise(resolve => setTimeout(resolve, 10));
     
@@ -231,12 +229,12 @@ export class BstComponent {
     let maxAmount = Math.max(31 * window.innerWidth / 1920,31 * window.innerHeight / 1080);
     while(this.only1binary(maxAmount) == false)
       maxAmount--;
-    if(this.bst.simulateInsertion(this.valueInsert) < maxAmount + 1){
-      await this.bst.insertValue(this.valueInsert);
+    if(this.bst.simulateInsertion(this.value) < maxAmount + 1){
+      await this.bst.insertValue(this.value);
       if(this.bst.size == maxAmount)
         this.tooMuch = 0.5;
     }
-    else if(this.bst.simulateInsertion(this.valueInsert) == maxAmount + 1 && this.tooMuch == 0)
+    else if(this.bst.simulateInsertion(this.value) == maxAmount + 1 && this.tooMuch == 0)
       this.tooMuch = 0.5;
     else
       this.tooMuch = 1;
@@ -245,7 +243,7 @@ export class BstComponent {
   }
   async remove(){
     this.disabled = true;
-    await this.bst.removeValue(this.valueRemove);
+    await this.bst.removeValue(this.value);
     this.tooMuch = 0;
     this.draw([], "");
     this.disabled = false;
@@ -253,7 +251,7 @@ export class BstComponent {
 
   async search(){
     this.disabled = true;
-    await this.bst.searchValue(this.valueSearch);
+    await this.bst.searchValue(this.value);
     this.draw([], "");
     this.disabled = false;
   }
@@ -291,7 +289,7 @@ export class BstComponent {
 
   async insertArray(){
     this.disabled = true;
-    const values = this.numberList.split(" ");
+    const values = this.numberList.split(/,| /);
     let checkedValues = [];
     for (let value of values){
         if(this.checkString(value))
