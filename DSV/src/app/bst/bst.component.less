@@ -62,7 +62,7 @@ canvas{
     padding-top: 1rem;
     padding-right: 2rem;
     padding: 3rem;
-    width:20%;
+    width: 20%;
     background-color: var(--clr-secondary);
     border-radius: 25px;
     margin-right:2rem;
@@ -86,28 +86,26 @@ input{
     width:90%;
     padding: 1rem;
     border-radius: 20px;
+    margin-top: 1rem;
 }
 
 .list{
     margin-bottom: 1rem;
 }
 
-.title{
+.title {
     color: var(--clr-text);
     font-weight: 700;
     font-size: 1.5rem;
     line-height: 1.25rem;
     margin-bottom: 3rem;
-  }
+}
 
-@media (max-width:1499px){
+@media (max-width:1249px){
 .title{
     margin-bottom:1rem;
 }
-.interactions{
-    padding: 1rem;
-    padding-bottom: 2rem; 
-}
+
 .wrapper{
     display: block;
     width: 85%;
@@ -115,9 +113,13 @@ input{
     margin-right: auto;
     text-align: center;
 }
-.interactions{
+.interactions {
     display: inline-block;
-    width:50%;
+    width: max(50%, 325px);
+    padding: 1rem;
+    padding-bottom: 2rem;
+    min-width: 325px;
+    max-width: 430px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -133,10 +135,4 @@ canvas{
 button, input{
     padding: 0.5rem;
 }
-}
-
-@media (max-width: 999px){
-    .interactions{
-        width:100%;
-    }
 }

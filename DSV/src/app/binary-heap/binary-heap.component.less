@@ -115,23 +115,26 @@ input{
     margin-bottom: 3rem;
   }
 
-  @media (max-width:999px){
+  @media (max-width:1249px){
     .title{
         margin-bottom:1rem;
     }
-    .interactions{
-        padding: 1rem;
-        padding-bottom: 2rem; 
-    }
-    .wrapper{
+
+    .wrapper {
         display: block;
         width: 85%;
         margin-left: auto;
         margin-right: auto;
+        text-align: center;
     }
-    .interactions{
+
+    .interactions {
         display: inline-block;
-        width:100%;
+        width: max(50%, 325px);
+        padding: 1rem;
+        padding-bottom: 2rem;
+        min-width: 325px;
+        max-width: 430px;
         margin-left: auto;
         margin-right: auto;
     }

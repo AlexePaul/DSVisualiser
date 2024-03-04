@@ -35,17 +35,17 @@ h1,p{
     justify-content: space-between;
 }
 
-.interactions{
+.interactions {
     display: inline-block;
     text-align: center;
     padding-top: 1rem;
     padding-right: 2rem;
     padding: 3rem;
-    width:20%;
+    width: 20%;
     background-color: var(--clr-secondary);
     border-radius: 25px;
-    margin-right:2rem;
-    order:2;
+    margin-right: 2rem;
+    order: 2;
 }
 
 canvas{
@@ -74,6 +74,7 @@ input{
     width:90%;
     padding: 1rem;
     border-radius: 20px;
+    margin-top: 1rem;
 }
 
 .title{
@@ -84,36 +85,43 @@ input{
   margin-bottom: 3rem;
 }
 
-@media (max-width:999px){
-    .title{
-        margin-bottom:1rem;
+@media (max-width:1249px) {
+    .title {
+        margin-bottom: 1rem;
     }
-    .interactions{
-        padding: 1rem;
-        padding-bottom: 2rem; 
-    }
-    .wrapper{
+
+    .wrapper {
         display: block;
         width: 85%;
         margin-left: auto;
         margin-right: auto;
+        text-align: center;
+        padding: 1rem;
+        padding-bottom: 2rem;
     }
-    .interactions{
+
+    .interactions {
         display: inline-block;
-        width:100%;
+        width: max(50%, 325px);
+        padding: 1rem;
+        padding-bottom: 2rem;
+        min-width: 325px;
+        max-width: 430px;
         margin-left: auto;
         margin-right: auto;
     }
-    
-    canvas{
+
+    canvas {
         display: inline-block;
         width: 100%;
-        height:100%;
+        height: 100%;
         margin-top: 1rem;
         margin-left: auto;
         margin-right: auto;
     }
-    button, input{
+
+    button,
+    input {
         padding: 0.5rem;
     }
 }
