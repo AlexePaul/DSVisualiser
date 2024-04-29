@@ -1,5 +1,4 @@
 import { nodeBST } from "./nodeBST";
-import { textToSpeech } from "./textToSpeech";
 
 export class binarySearchTree{
     draw: (specialNumbers: number[], specialColor:string) => void
@@ -46,9 +45,6 @@ export class binarySearchTree{
     async insertValue(value:number, verbose:boolean = true){
         var pos = this.root;
         var position = 1;
-        let speech = new textToSpeech();
-        if(pos != null && verbose == true)
-            await speech.speakText("I search for the value, if it doesn't exist i create it");
         while(pos != null){
             if(verbose == true)
                 await this.draw([position], "Blue");
@@ -79,9 +75,6 @@ export class binarySearchTree{
     async searchValue(value:number, verbose:boolean = true) : Promise<{node:nodeBST | null, position:number}>{
         var pos = this.root;
         var position = 1;
-        var speech = new textToSpeech;
-        if(verbose == true)
-            await speech.speakText("I go left if my value is smaller than the node i'm on, otherwise right");
         while(pos != null){
             await this.draw([position], "Blue");
             if(value > pos.value){
@@ -113,13 +106,10 @@ export class binarySearchTree{
     }
 
     async removeNode(pair: {node:nodeBST | null, position:number}, verbose:boolean = true){
-        var speech = new textToSpeech;
         var node = pair.node;
         if(node == null)
             return;
         if (!node.left && !node.right) {
-            if(verbose == true)
-                await speech.speakText("The node is a leaf so i just delete it");
             if (node.father) {
                 await this.draw([pair.position],"Red");
                 if (node === node.father.left) {
@@ -130,8 +120,6 @@ export class binarySearchTree{
                 await this.draw([],"");
             }
         } else if (node.left && node.right) {
-            if(verbose == true)
-                await speech.speakText("The node has 2 children so i set it's value to the successor");
             const successor = await this.findSuccessor({node:node, position:pair.position});
                 await this.draw([pair.position, successor.position], "Green");
             node.value = successor.node?.value as any;
@@ -140,8 +128,6 @@ export class binarySearchTree{
         } else {
             const child = node.left ? node.left : node.right as any;
             await this.draw([pair.position], "Red");
-            if(verbose == true)
-                await speech.speakText("The node has 1 child so i give it to it's father");
             if (node.father) {
                 if (node === node.father.left) {
                     node.father.left = child;
@@ -159,8 +145,6 @@ export class binarySearchTree{
     }
 
     async removeValue(value:number) : Promise<boolean>{
-        var speech = new textToSpeech;
-        await speech.speakText("I search for the value");
         const node = await this.searchValue(value, false);
         if(node != null){
             this.removeNode(node);

@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule} from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SllComponent } from './sll/sll.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BinaryHeapComponent } from './binary-heap/binary-heap.component';
 import { HomeComponent } from './home/home.component';
 import { BstComponent } from './bst/bst.component';
@@ -22,7 +22,8 @@ import { HashTableComponent } from './hash-table/hash-table.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

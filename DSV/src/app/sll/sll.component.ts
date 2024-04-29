@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { simpleLinkedList } from 'src/shared/models/simpleLinkedList';
+import { utils } from 'src/shared/models/utils';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'sll',
@@ -12,15 +14,25 @@ export class SllComponent {
   stopAnimation: boolean = false;
   position:[number,number,number,number,string, number][] = [];
   clicked: boolean = false;
+  form: FormGroup;
 
   get SLLAsArray(){
     return this.SLL.asArray();
   }
 
-  constructor() {
-      
+  constructor(private fb: FormBuilder) {
+    this.form = this.fb.group({
+      InsertValue: ['', [Validators.required, Validators.pattern('^[0-9]{1,10}$')]]
+    });
   }
 
+  ngOnInit(){
+    this.form.get('InsertValue')?.valueChanges.subscribe(value => {
+      this.value = value ? parseInt(value, 10) : 0;
+      this.value = Math.min(this.value, 99999999);
+    });
+  }
+  
   getRandomInt(max:number) {
     return Math.floor(Math.random() * max);
   }
@@ -103,7 +115,9 @@ export class SllComponent {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     if(this.SLLAsArray.length > 0){
-    
+      // Aleg dimensiunile/numarul de patrate in functie aplicand regula de 3 simpla
+      // avand niste dimensiuni subiective pentru 1920x1080, generez dimensiunile pentru orice rezolutie.
+
       var space = windowWidth/ Math.min((this.SLLAsArray.length + 1), Math.ceil(windowWidth*9/1920)+1);
       var rectangleHeight = (windowHeight*100)/1080;
       var rectangleWidth = (windowWidth*150)/1920;
@@ -149,7 +163,7 @@ export class SllComponent {
       for(let i = 0; i < this.SLLAsArray.length; i++){
         ctx.textAlign = "center";
         ctx.textBaseline = "middle"; 
-        ctx.font = rectangleHeight/3+"px Tahoma";
+        ctx.font = utils.calculateFontSize(this.SLLAsArray[i].value, rectangleHeight)+"px Tahoma";
         ctx.fillStyle=myColor;
         ctx.fillText(String(this.SLLAsArray[i].value),  space*((i)%(maxPerRow)+1) - rectangleWidth/8, (1 + Math.floor((i)/(maxPerRow)))*40+Math.floor((i)/(maxPerRow))*rectangleHeight + rectangleHeight/2);
       }
@@ -200,6 +214,18 @@ export class SllComponent {
     this.SLL.removeBack();
     this.stopAnimation = false;
     this.draw();
+  }
+
+  checkValue(){
+    const strValue = this.value.toString();
+
+    const correctedValue = strValue.replace(/\D/g, '').slice(0, 10);
+    
+     if (correctedValue === "") {
+        this.value = 0;
+    }
+    
+    this.value = parseInt(correctedValue, 10);
   }
 
 }

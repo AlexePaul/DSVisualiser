@@ -1,8 +1,8 @@
 <div class="wrapper" (window:resize)="this.draw()">
   <div class="interactions">
     <h1 class="title">Lista Simplu Inlantuita</h1>
-    <form class="text-center">
-      <input name="InsertValue" type="number" [(ngModel)]="this.value" />
+    <form class="text-center" [formGroup]="form">
+      <input name="InsertValue" type="number" formControlName="InsertValue" />
       <br />
       <button
         id="btn"
