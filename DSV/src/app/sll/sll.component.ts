@@ -29,6 +29,7 @@ export class SllComponent {
     this.form.get('InsertValue')?.valueChanges.subscribe(value => {
       this.value = value ? parseInt(value, 10) : 0;
       this.value = Math.min(this.value, 99999999);
+      this.value = Math.max(this.value, -99999999);
     });
   }
   

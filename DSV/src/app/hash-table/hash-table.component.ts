@@ -1,4 +1,5 @@
 import { Component, ChangeDetectorRef, Renderer2 } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { hashTable } from 'src/shared/models/hashTable';
 
 @Component({
@@ -12,19 +13,28 @@ export class HashTableComponent {
   hashTable: hashTable;
   modulo: number = 10;
   animation : boolean = false;
+  form: FormGroup;
 
   hashFunction(value:number) : number{
     return value%this.modulo;
   }
 
-  constructor(private cdr: ChangeDetectorRef){
+  constructor(private cdr: ChangeDetectorRef, private fb: FormBuilder){
     this.draw = this.draw.bind(this);
     this.hashFunction = this.hashFunction.bind(this);
     this.hashTable = new hashTable(this.hashFunction,this.modulo, this.draw);
+    this.form = this.fb.group({
+      InsertValue: ['', [Validators.required, Validators.pattern('^[0-9]{1,10}$')]]
+    });
   }
   
   ngOnInit() {
     this.draw(-1, [], "");
+    this.form.get('InsertValue')?.valueChanges.subscribe(value => {
+      this.value = value ? parseInt(value, 10) : 0;
+      this.value = Math.min(this.value, 99999999);
+      this.value = Math.max(this.value, -99999999);
+    });
   }
 
   async delay(ms:number) {
@@ -45,6 +55,16 @@ export class HashTableComponent {
     else{
       console.error("Canvas element not found.");
     }
+  }
+
+  calculateFontSize(value: number, rectangleWidth: number) {
+    var numcif = 0;
+    while(value!= 0){
+      value= Math.floor(value /10);
+      numcif++;
+    }
+    console.log(rectangleWidth/3 + "-"+numcif*rectangleWidth/48)
+    return rectangleWidth/3 - numcif*rectangleWidth/48;
   }
 
   async fadingRectangle(x : any, y : any, width : any, height : any, startingColor:string = "Black", color:string = ""){
@@ -138,7 +158,7 @@ export class HashTableComponent {
       ctx.stroke();
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-      ctx.font = rectangleHeight/3+"px Tahoma";
+      ctx.font = this.calculateFontSize(i,rectangleWidth)+"px Tahoma";
       ctx.fillStyle=myColor;
       ctx.fillText(String(i),  windowWidth*0.05 + 3 * rectangleWidth/8,(rectangleHeight + 10)*(i+1) + rectangleHeight/2);  
     }
@@ -157,7 +177,7 @@ export class HashTableComponent {
         ctx.stroke();
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
-        ctx.font = rectangleHeight/3+"px Tahoma";
+        ctx.font = this.calculateFontSize(this.hashTable.array[i][j],rectangleWidth)+"px Tahoma";
         ctx.fillStyle=myColor;
         ctx.fillText(String(this.hashTable.array[i][j]),  windowWidth*0.05 + (rectangleWidth + 25) * idx + 3 * rectangleWidth/8,(rectangleHeight + 10)*(i+1) + rectangleHeight/2);
 
