@@ -254,13 +254,13 @@ export class BstComponent {
     let maxAmount = Math.max(31 * window.innerWidth / 1920,31 * window.innerHeight / 1080);
     while(this.only1binary(maxAmount) == false)
       maxAmount--;
-    //console.log("inserting: " + this.value + "\nmaxAmount is: " + maxAmount+ "\nsize is: " + this.bst.size);
-    if(this.bst.simulateInsertion(this.value) < maxAmount + 1){
+    console.log("inserting: " + this.value + "\nmaxAmount is: " + maxAmount+ "\nsize is: " + this.bst.size);
+    if(this.bst.simulateInsertion(this.value) < maxAmount){
       await this.bst.insertValue(this.value);
       if(this.bst.size == maxAmount)
         this.tooMuch = 0.5;
     }
-    else if(this.bst.simulateInsertion(this.value) == maxAmount + 1 && this.tooMuch == 0)
+    else if(this.bst.simulateInsertion(this.value) == maxAmount && this.tooMuch == 0)
       this.tooMuch = 0.5;
     else
       this.tooMuch = 1;
@@ -321,6 +321,7 @@ export class BstComponent {
         if(this.checkString(value))
           checkedValues.push(parseInt(value));
     }
+    await this.bst.clear();
     checkedValues.sort((a,b)=>a-b);
     await this.insertArrayOrdered(checkedValues, 0 , checkedValues.length - 1);
     this.disabled = false;

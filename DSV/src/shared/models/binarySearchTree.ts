@@ -152,4 +152,9 @@ export class binarySearchTree{
         }
         return false;
     }
+
+    async clear(){
+        this.size = 0;
+        this.root = null;
+    }
 }
