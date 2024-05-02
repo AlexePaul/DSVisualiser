@@ -10,8 +10,8 @@
       You hit the size cap!
       <br />
     </div>
-    <form>
-      <input name="InsertValue" type="number" [(ngModel)]="this.value" />
+    <form [formGroup]="form">
+      <input name="InsertValue" type="number" formControlName="InsertValue" />
       <button
         type="submit"
         [disabled]="this.disabled"

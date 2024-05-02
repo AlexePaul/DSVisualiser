@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { simpleLinkedList } from 'src/shared/models/simpleLinkedList';
-import { utils } from 'src/shared/models/utils';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -55,6 +54,15 @@ export class SllComponent {
 
   async delay(ms:number) {
     return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  calculateFontSize(value: number, rectangleWidth: number) {
+    var numcif = 0;
+    while(value!= 0){
+      value= Math.floor(value /10);
+      numcif++;
+    }
+    return rectangleWidth/3 - numcif*rectangleWidth/48;
   }
 
   async update(){
@@ -163,7 +171,7 @@ export class SllComponent {
       for(let i = 0; i < this.SLLAsArray.length; i++){
         ctx.textAlign = "center";
         ctx.textBaseline = "middle"; 
-        ctx.font = utils.calculateFontSize(this.SLLAsArray[i].value, rectangleHeight)+"px Tahoma";
+        ctx.font = this.calculateFontSize(this.SLLAsArray[i].value, rectangleWidth)+"px Tahoma";
         ctx.fillStyle=myColor;
         ctx.fillText(String(this.SLLAsArray[i].value),  space*((i)%(maxPerRow)+1) - rectangleWidth/8, (1 + Math.floor((i)/(maxPerRow)))*40+Math.floor((i)/(maxPerRow))*rectangleHeight + rectangleHeight/2);
       }

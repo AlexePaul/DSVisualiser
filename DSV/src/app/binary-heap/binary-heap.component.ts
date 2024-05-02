@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { binaryHeap } from 'src/shared/models/binaryHeap';
 
 @Component({
@@ -14,10 +15,23 @@ export class BinaryHeapComponent {
   stopAnimation: boolean = false;
   disabled: boolean = false;
   position:[number,number,number][] = [];
+  form: FormGroup;
 
-  constructor(){
+  constructor(private fb: FormBuilder){
     this.draw = this.draw.bind(this);
     this.bHeap = new binaryHeap(true, this.draw);
+
+    this.form = this.fb.group({
+      InsertValue: ['', [Validators.required, Validators.pattern('^[0-9]{1,10}$')]]
+    });
+  }
+
+  ngOnInit(){
+    this.form.get('InsertValue')?.valueChanges.subscribe(value => {
+      this.value = value ? parseInt(value, 10) : 0;
+      this.value = Math.min(this.value, 99999999);
+      this.value = Math.max(this.value, -99999999);
+    });
   }
 
   drawLines(circleRadius : any){
@@ -117,6 +131,8 @@ export class BinaryHeapComponent {
       ctx.stroke();
       await this.delay(10)
     }
+    ctx.stroke();
+    await this.delay(10)
     this.animation = false;
   }
 
@@ -136,7 +152,7 @@ export class BinaryHeapComponent {
     var size = this.bHeap.size;  
     var step = 0;
     var counter = 1;
-    var circleRadius = 24 * windowWidth / 1080;
+    var circleRadius = 30 * windowWidth / 1080;
     
     if(ctx == null)
     return new Promise(resolve => setTimeout(resolve, 1));
@@ -162,14 +178,14 @@ export class BinaryHeapComponent {
           if(i==0){
             ctx.textAlign = "center";
             ctx.textBaseline = "middle"; 
-            ctx.font = "16px Tahoma";
+            ctx.font = this.calculateFontSize(this.bHeap.array[counter], circleRadius)+"px Tahoma";
             ctx.fillStyle = myColor;
             ctx.fillText(String(this.bHeap.array[counter++]),space,150*(step+1));
           }
           else{
             ctx.textAlign = "center";
             ctx.textBaseline = "middle"; 
-            ctx.font = "16px Tahoma";
+            ctx.font = this.calculateFontSize(this.bHeap.array[counter], circleRadius)+"px Tahoma";
             ctx.fillStyle = myColor;
             ctx.fillText(String(this.bHeap.array[counter++]),space + 2*space*i,150*(step+1));
           }
@@ -186,14 +202,14 @@ export class BinaryHeapComponent {
           if(i==0){
             ctx.textAlign = "center";
             ctx.textBaseline = "middle"; 
-            ctx.font = "16px Tahoma";
+            ctx.font = this.calculateFontSize(this.bHeap.array[counter], circleRadius)+"px Tahoma";
             ctx.fillStyle = myColor;
             ctx.fillText(String(this.bHeap.array[counter++]),space,150*(step+1));
           }
           else{
             ctx.textAlign = "center";
             ctx.textBaseline = "middle"; 
-            ctx.font = "16px Tahoma";
+            ctx.font = this.calculateFontSize(this.bHeap.array[counter], circleRadius)+"px Tahoma";
             ctx.fillStyle = myColor;
             ctx.fillText(String(this.bHeap.array[counter++]),space + 2*space*i,150*(step+1));
           }
@@ -209,6 +225,17 @@ export class BinaryHeapComponent {
       await this.delay(1);
     }
     return new Promise(resolve => setTimeout(resolve, 1));
+  }
+  calculateFontSize(value: any, circleRadius: any) {
+    var numcif = 0;
+    while(value!= 0){
+      if(value > 0)
+        value = Math.floor(value / 10);
+      else
+        value = Math.ceil(value / 10);
+      numcif++;
+    }
+    return circleRadius - numcif*circleRadius/14;
   }
 
   only1binary(value : number) : boolean{
