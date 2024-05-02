@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { binarySearchTree } from 'src/shared/models/binarySearchTree';
 @Component({
   selector: 'app-bst',
@@ -14,10 +15,22 @@ export class BstComponent {
   disabled: boolean = false;
   numberList: string = "";
   position:[number,number,number][] = [];
+  form: FormGroup;
 
-  constructor(){
+  constructor(private fb: FormBuilder){
     this.draw = this.draw.bind(this);
     this.bst = new binarySearchTree(this.draw);
+    this.form = this.fb.group({
+      InsertValue: ['', [Validators.required, Validators.pattern('^[0-9]{1,10}$')]]
+    });
+  }
+
+  ngOnInit(){
+    this.form.get('InsertValue')?.valueChanges.subscribe(value => {
+      this.value = value ? parseInt(value, 10) : 0;
+      this.value = Math.min(this.value, 99999999);
+      this.value = Math.max(this.value, -99999999);
+    });
   }
 
   drawLines(circleRadius : any){
@@ -162,14 +175,14 @@ export class BstComponent {
             if(i==0){
               ctx.textAlign = "center";
               ctx.textBaseline = "middle";  
-              ctx.font = "16px Tahoma";
+              ctx.font = this.calculateFontSize(this.bst.array[counter], circleRadius)+"px Tahoma";
               ctx.fillStyle = myColor;
               ctx.fillText(String(this.bst.array[counter++]),space,150*(step+1));
             }
             else{
               ctx.textAlign = "center";
               ctx.textBaseline = "middle"; 
-              ctx.font = "16px Tahoma";
+              ctx.font = this.calculateFontSize(this.bst.array[counter], circleRadius)+"px Tahoma";
               ctx.fillStyle = myColor;
               ctx.fillText(String(this.bst.array[counter++]),space + 2*space*i,150*(step+1));
             }
@@ -186,14 +199,14 @@ export class BstComponent {
             if(i==0){
               ctx.textAlign = "center";
               ctx.textBaseline = "middle";
-              ctx.font = "16px Tahoma";
+              ctx.font = this.calculateFontSize(this.bst.array[counter], circleRadius)+"px Tahoma";
               ctx.fillStyle = myColor;
               ctx.fillText(String(this.bst.array[counter++]),space,150*(step+1));
             }
             else{
               ctx.textAlign = "center";
               ctx.textBaseline = "middle";
-              ctx.font = "16px Tahoma";
+              ctx.font = this.calculateFontSize(this.bst.array[counter], circleRadius)+"px Tahoma";
               ctx.fillStyle = myColor;
               ctx.fillText(String(this.bst.array[counter++]),space + 2*space*i,150*(step+1));
             }
@@ -215,6 +228,18 @@ export class BstComponent {
     return new Promise(resolve => setTimeout(resolve, 10));
   }
 
+  calculateFontSize(value: any, circleRadius: any) {
+    var numcif = 0;
+    while(value!= 0){
+      if(value > 0)
+        value = Math.floor(value / 10);
+      else
+        value = Math.ceil(value / 10);
+      numcif++;
+    }
+    return circleRadius - numcif*circleRadius/14;
+  }
+
   only1binary(value : number) : boolean{
     while(value!=1){
       if(value%2 == 0)
@@ -229,6 +254,7 @@ export class BstComponent {
     let maxAmount = Math.max(31 * window.innerWidth / 1920,31 * window.innerHeight / 1080);
     while(this.only1binary(maxAmount) == false)
       maxAmount--;
+    //console.log("inserting: " + this.value + "\nmaxAmount is: " + maxAmount+ "\nsize is: " + this.bst.size);
     if(this.bst.simulateInsertion(this.value) < maxAmount + 1){
       await this.bst.insertValue(this.value);
       if(this.bst.size == maxAmount)

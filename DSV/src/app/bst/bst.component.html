@@ -24,8 +24,8 @@
         </button>
       </div>
     </form>
-    <form>
-      <input name="InsertValue" type="number" [(ngModel)]="this.value" />
+    <form [formGroup]="form">
+      <input name="InsertValue" type="number" formControlName="InsertValue" />
 
       <button
         type="submit"
