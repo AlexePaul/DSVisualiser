@@ -1,3 +1,37 @@
+<div class="descriptions">
+  <h1 class="descriptionsTitle">Heap Binar</h1>
+  <ul>
+    <h1 class="op"></h1>
+    <li>
+      <p>
+        Un <b>Heap Binar</b> reprezinta o structura de date folosita pentru a
+        calcula minimul/maximul dintr-o multime de elemente. Heap-ul binar este
+        un arbore complet cu proprietatea ca cei fii unui nod sunt mai mari (in
+        cazul unui min-heap) sau mai mici (in cazul unui max-heap) decat tatal.
+      </p>
+    </li>
+    <li>
+      <h1 class="op">Adaugare Numar</h1>
+    </li>
+    <p>
+      Complexitate: O(h), unde h este inaltimea arborelui (log(n)).<br />Adaug
+      numarul la final apoi il urc (daca strica propietatea de heap) prin a
+      interschimba nodul cu tatal acestuia
+    </p>
+    <li>
+      <h1 class="op">Sterge Radacina (Minimul/maximul)</h1>
+    </li>
+    <p>
+      Complexitate: O(h), unde h este inaltimea arborelui (log(n)).<br />Inlocuiesc
+      Radacina cu ultimul elemnent apoi sterg ultimul element. Pentru a ma
+      asigura ca nu stric proprietatea heap-ului, il repar prin a cobora
+      radacina, o schimb cu cel mai mic(in cazul unui min-heap) / mare (in cazul
+      unui max-heap) fiu pana cand se respecta prorpietatea de heap-ului
+      (implicit, in momentul in care cel cu care ar trebui sa schimb, este mai
+      mare/ mic decat nodul respectiv)
+    </p>
+  </ul>
+</div>
 <div class="wrapper" (window:resize)="this.draw([], '')">
   <div class="interactions">
     <h1 class="title">Heap Binar</h1>
