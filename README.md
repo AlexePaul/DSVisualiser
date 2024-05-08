@@ -1,4 +1,5 @@
 # Data Structures Visualiser
+![Vercel Badge](https://deploy-badge.vercel.app/vercel/deploy-badge) ![License](https://img.shields.io/badge/license-MIT-blue)
 
 This guide provides an overview of the basic operations for different data structures: simple linked list (SLL), binary heap, binary search tree (BST), and hash table.
 
