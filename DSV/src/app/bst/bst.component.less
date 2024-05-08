@@ -25,8 +25,8 @@ canvas{
     width: 70%;
     height:100%;
     margin-top: 2rem;
-    margin-left: 2rem;
-    order:1;
+    margin-right: 2rem;
+    order:2;
 }
 
 .tooMany{
@@ -65,8 +65,8 @@ canvas{
     width: 20%;
     background-color: var(--clr-secondary);
     border-radius: 25px;
-    margin-right:2rem;
-    order:2;
+    margin-left:2rem;
+    order:1;
 }
 
 button{
@@ -99,6 +99,53 @@ input{
     font-size: 1.5rem;
     line-height: 1.25rem;
     margin-bottom: 3rem;
+}
+
+p{
+    font-weight: 300;
+}
+p>b{
+    font-weight: 500;
+}
+
+ul{
+    list-style-type: disc; 
+    color: var(--clr-text);  
+}
+
+ol{
+    list-style-type: decimal;
+    color: var(--clr-text);
+    margin-left: 7ch;
+}
+
+.descriptions{
+    margin-top:4rem;
+    width:75%;
+    margin-left:auto;
+    margin-right: auto;
+    display:flex;
+    flex-wrap: wrap;
+    background-color: var(--clr-secondary);
+    border-radius: 25px;
+    margin-bottom: 4rem;
+    padding:2rem;
+}
+
+.descriptionsTitle{
+    display:block;
+    color: var(--clr-text);
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 1.25rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    margin-left:auto;
+    margin-right:auto;
+    flex-basis: auto;
+}
+.op{
+    width:100%;
 }
 
 @media (max-width:1249px){
