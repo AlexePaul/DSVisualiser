@@ -1,45 +1,49 @@
 <ng-template #Links>
-    <a class="home" (click)="this.isMenuOpen = false" routerLink="">DSV</a>
-    <a
-        class="link"
-        (click)="this.isMenuOpen = false"
-        routerLink="simplelinkedlist"
-    >
-        Lista Inlantuita
-    </a>
-    <a class="link" (click)="this.isMenuOpen = false" routerLink="binaryheap">
-        Heap Binar
-    </a>
-    <a
-        class="link"
-        (click)="this.isMenuOpen = false"
-        routerLink="binarysearchtree"
-    >
-        ABC
-    </a>
-    <a class="link" (click)="this.isMenuOpen = false" routerLink="hashtable">
-        Tabela Hash
-    </a>
+  <a class="home" (click)="this.isMenuOpen = false" routerLink="">DSV</a>
+  <a
+    class="link"
+    (click)="this.isMenuOpen = false"
+    routerLink="simplelinkedlist"
+  >
+    Lista Inlantuita
+  </a>
+  <a class="link" (click)="this.isMenuOpen = false" routerLink="binaryheap">
+    Heap Binar
+  </a>
+  <a
+    class="link"
+    (click)="this.isMenuOpen = false"
+    routerLink="binarysearchtree"
+  >
+    Arb Bin de Cautare
+  </a>
+  <a class="link" (click)="this.isMenuOpen = false" routerLink="hashtable">
+    Tabela Hash
+  </a>
 </ng-template>
 
 <div class="wrapper" (window:resize)="this.checkHamburger()">
-    <nav *ngIf="this.hamburger == false; else hamburgerMenu" class="navigation">
-        <ng-container *ngTemplateOutlet="Links"></ng-container>
-    </nav>
-    <ng-template #hamburgerMenu>
-        <div
-            class="hamburger-menu"
-            (click)="this.isMenuOpen = !this.isMenuOpen"
-        >
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div>
+  <nav *ngIf="this.hamburger == false; else hamburgerMenu" class="navigation">
+    <ng-container *ngTemplateOutlet="Links"></ng-container>
+  </nav>
+  <ng-template #hamburgerMenu>
+    <div class="hamburger-menu" (click)="this.isMenuOpen = !this.isMenuOpen">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
 
-        <div class="menu" [ngClass]="{ open: isMenuOpen }">
-            <ng-container *ngTemplateOutlet="Links"></ng-container>
-        </div>
-    </ng-template>
+    <div class="menu" [ngClass]="{ open: isMenuOpen }">
+      <ng-container *ngTemplateOutlet="Links"></ng-container>
+    </div>
+  </ng-template>
 </div>
 
 <router-outlet></router-outlet>
+
+<footer>
+  <div>
+    <p>&copy; 2024 DSVisualiser. All rights reserved.</p>
+    <p>Designed by Alexe Vasile Paul</p>
+  </div>
+</footer>

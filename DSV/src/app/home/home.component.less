@@ -11,6 +11,25 @@ b{
     color: var(--clr-accent);
 }
 
+ul{
+    color: var(--clr-text);
+    list-style-type: disc;
+}
+
+ul li{
+    margin-top: 1rem;
+}
+
+ol li{
+    margin-top:0.5rem;
+}
+
+ol{
+    color: var(--clr-text);
+    list-style-type: decimal;
+        margin-left: 10%;
+}
+
 .title{
     text-align: center;
     font-weight: 500;
@@ -42,3 +61,10 @@ b{
         line-height: 1rem;
     }
 }   
+
+@media (min-width: 1000px) {
+    .body{
+        margin-left:5rem;
+        margin-right:5rem;
+    }
+}
