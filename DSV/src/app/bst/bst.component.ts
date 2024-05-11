@@ -327,4 +327,8 @@ export class BstComponent {
     this.disabled = false;
   }
 
+  async inOrderTraversal(){
+    await this.bst.inOrderTraversal(this.bst.root, 1);
+    this.draw([], '')
+  }
 }

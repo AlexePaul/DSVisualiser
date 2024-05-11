@@ -153,6 +153,37 @@ export class binarySearchTree{
         return false;
     }
 
+    async inOrderTraversal(node: nodeBST|null, position: number){
+        if(node == null)
+            return;
+
+        await this.draw([position],"Blue");
+
+        await this.inOrderTraversal(node.left, position*2);
+
+        await this.draw([position], "Green");
+
+        await this.inOrderTraversal(node.right, position*2+1);
+    }
+
+/*
+    void printInorder(struct Node* node)
+{
+    if (node == NULL)
+        return;
+
+    // First recur on left child
+    printInorder(node->left);
+
+    // Then print the data of node
+    cout << node->data << " ";
+
+    // Now recur on right child
+    printInorder(node->right);
+}
+
+*/
+
     async clear(){
         this.size = 0;
         this.root = null;

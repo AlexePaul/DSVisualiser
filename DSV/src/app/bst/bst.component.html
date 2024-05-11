@@ -43,6 +43,18 @@
       perfecta, astfel avand o inaltime cat mai apropiata de log(N)
     </p>
     <li>
+      <h1 class="op">Parcurgere In-Order</h1>
+    </li>
+    <p>
+      Complexitate: O(n), unde n este numarul de elemente. <br />
+      Folosind parcurgerea In-order pot sa obtin vectorul format din elementele
+      <b>Arborelui Binar de Cautare</b> sortat.<br />
+      <b>Atentie!</b> Asta nu inseamna ca exista sortare in O(n), deoarece
+      dureaza si inserarea elementelor. In cazul implementarii de pe website,
+      nodul albstru semnifica un nod prin care doar trec iar cel verde este un
+      nod afisat.
+    </p>
+    <li>
       <h1 class="op">Sterge Numar</h1>
     </li>
     <p>
@@ -115,6 +127,16 @@
         (click)="$event.preventDefault(); this.remove(); this.draw([], '')"
       >
         Scoate numar
+      </button>
+
+      <button
+        type="submit"
+        [disabled]="this.disabled"
+        (click)="
+          $event.preventDefault(); this.inOrderTraversal(); this.draw([], '')
+        "
+      >
+        inOrderTraversal
       </button>
     </form>
   </div>
