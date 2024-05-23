@@ -15,6 +15,7 @@ export class BstComponent {
   disabled: boolean = false;
   numberList: string = "";
   position:[number,number,number][] = [];
+  printedNumbers: number[] = [];
   form: FormGroup;
 
   constructor(private fb: FormBuilder){
@@ -133,7 +134,34 @@ export class BstComponent {
     this.animation = false;
   }
 
-  async draw(specialNumbers:number[], specialColor: string){
+  printNumbers() {
+        const canvas = document.getElementById("Canvas") as HTMLCanvasElement;
+        const ctx = canvas.getContext('2d');
+        var windowWidth = window.innerWidth;
+        var windowHeight = window.innerHeight;
+
+        if(ctx == null)
+         return new Promise(resolve => setTimeout(resolve, 10));
+
+        canvas.width = windowWidth;
+        canvas.height = windowHeight;
+
+        ctx.font = "40px Tahoma";
+        ctx.fillStyle = "black";
+        ctx.textBaseline = "bottom";
+
+        var toPrint: string = "";
+        this.printedNumbers.forEach((number, index) => {
+            toPrint = toPrint.concat(number.toString());
+            toPrint = toPrint.concat(" ");
+        });
+        
+        ctx.fillText(toPrint, 10, windowHeight-10);
+
+        return new Promise(resolve => setTimeout(resolve, 10));
+    }
+
+  async draw(specialNumbers:number[], specialColor: string, placeNumber:number | null){
     const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
     var myColor = "rgb(0,0,0)"
     if(prefersDarkMode)
@@ -155,6 +183,11 @@ export class BstComponent {
     
     ctx.canvas.width  = windowWidth;
     ctx.canvas.height = windowHeight;
+
+    if(placeNumber != null)
+      this.printedNumbers.push(placeNumber);
+    this.printNumbers();
+
     while(size > 0){
       var space = Math.floor(windowWidth / (numberOfNodes*2));
       for(var i = 0; i < Math.min(numberOfNodes,size); i++){
@@ -222,6 +255,7 @@ export class BstComponent {
         numberOfNodes *= 2;
     }
     this.drawLines(circleRadius);
+
     while(this.animation == true){
       await this.delay(1);
     }
@@ -264,21 +298,21 @@ export class BstComponent {
       this.tooMuch = 0.5;
     else
       this.tooMuch = 1;
-    this.draw([], "");
+    this.draw([], "", null);
     this.disabled = false;
   }
   async remove(){
     this.disabled = true;
     await this.bst.removeValue(this.value);
     this.tooMuch = 0;
-    this.draw([], "");
+    this.draw([], "", null);
     this.disabled = false;
   }
 
   async search(){
     this.disabled = true;
     await this.bst.searchValue(this.value);
-    this.draw([], "");
+    this.draw([], "", null);
     this.disabled = false;
   }
 
@@ -300,7 +334,7 @@ export class BstComponent {
       this.tooMuch = 0.5;
     else
       this.tooMuch = 1;
-    this.draw([], "");
+    this.draw([], "", null);
     this.disabled = false;
   }
 
@@ -329,6 +363,7 @@ export class BstComponent {
 
   async inOrderTraversal(){
     await this.bst.inOrderTraversal(this.bst.root, 1);
-    this.draw([], '')
+    this.printedNumbers = [];
+    this.draw([], '', null)
   }
 }

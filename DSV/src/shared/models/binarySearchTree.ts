@@ -1,11 +1,11 @@
 import { nodeBST } from "./nodeBST";
 
 export class binarySearchTree{
-    draw: (specialNumbers: number[], specialColor:string) => void
+    draw: (specialNumbers: number[], specialColor:string, placeNumber:number|null) => void
     size: number = 0;
     root: nodeBST|null = null;
 
-    constructor(draw: (specialNumbers: number[], specialColor:string) => void){
+    constructor(draw: (specialNumbers: number[], specialColor:string, placeNumber:number|null) => void){
         this.draw = draw;
     }
 
@@ -47,7 +47,7 @@ export class binarySearchTree{
         var position = 1;
         while(pos != null){
             if(verbose == true)
-                await this.draw([position], "Blue");
+                await this.draw([position], "Blue", null);
             if(value > pos.value){
                 if(pos.right != null)
                     pos = pos.right;
@@ -69,14 +69,14 @@ export class binarySearchTree{
             this.root = new nodeBST(value);
         this.size = Math.max(position, this.size);
         if(verbose == true)
-            await this.draw([position], "Green");
+            await this.draw([position], "Green", null);
     }
 
     async searchValue(value:number, verbose:boolean = true) : Promise<{node:nodeBST | null, position:number}>{
         var pos = this.root;
         var position = 1;
         while(pos != null){
-            await this.draw([position], "Blue");
+            await this.draw([position], "Blue", null);
             if(value > pos.value){
                 pos = pos.right;
                 position = position * 2 + 1;
@@ -98,7 +98,7 @@ export class binarySearchTree{
         node = node.right as any;
         position = position * 2 + 1;
         while(node.left){
-            await this.draw([position], "Blue")
+            await this.draw([position], "Blue", null)
             node = node.left as any;
             position = position * 2;
         }
@@ -111,23 +111,23 @@ export class binarySearchTree{
             return;
         if (!node.left && !node.right) {
             if (node.father) {
-                await this.draw([pair.position],"Red");
+                await this.draw([pair.position],"Red", null);
                 if (node === node.father.left) {
                     node.father.left = null;
                 } else if (node === node.father.right) {
                     node.father.right = null;
                 }
-                await this.draw([],"");
+                await this.draw([],"", null);
             }
         } else if (node.left && node.right) {
             const successor = await this.findSuccessor({node:node, position:pair.position});
-                await this.draw([pair.position, successor.position], "Green");
+                await this.draw([pair.position, successor.position], "Green", null);
             node.value = successor.node?.value as any;
             this.removeNode({node: successor.node, position: successor.position}, false);
-            this.draw([],"");
+            this.draw([],"", null);
         } else {
             const child = node.left ? node.left : node.right as any;
-            await this.draw([pair.position], "Red");
+            await this.draw([pair.position], "Red", null);
             if (node.father) {
                 if (node === node.father.left) {
                     node.father.left = child;
@@ -140,7 +140,7 @@ export class binarySearchTree{
                 node.left = child.left;
                 node.right = child.right;
             }
-            this.draw([],"");
+            this.draw([],"", null);
         }
     }
 
@@ -157,32 +157,14 @@ export class binarySearchTree{
         if(node == null)
             return;
 
-        await this.draw([position],"Blue");
+        await this.draw([position],"Blue", null);
 
         await this.inOrderTraversal(node.left, position*2);
 
-        await this.draw([position], "Green");
+        await this.draw([position], "Green", node.value);
 
         await this.inOrderTraversal(node.right, position*2+1);
     }
-
-/*
-    void printInorder(struct Node* node)
-{
-    if (node == NULL)
-        return;
-
-    // First recur on left child
-    printInorder(node->left);
-
-    // Then print the data of node
-    cout << node->data << " ";
-
-    // Now recur on right child
-    printInorder(node->right);
-}
-
-*/
 
     async clear(){
         this.size = 0;

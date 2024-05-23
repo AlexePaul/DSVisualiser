@@ -1,3 +1,89 @@
+<div class="wrapper" (window:resize)="this.draw([], '', null)">
+    <div class="interactions">
+        <h1 class="title">Arbore Binar De Cautare</h1>
+        <div *ngIf="tooMuch == 1" class="tooMany">
+            Too Many Values!
+            <br />
+            Remove before inserting again!
+        </div>
+        <div *ngIf="tooMuch == 0.5" class="cap">
+            You hit the size cap!
+            <br />
+        </div>
+        <form>
+            <div class="list">
+                <input name="InsertValue" [(ngModel)]="this.numberList" />
+                <button
+                    type="submit"
+                    [disabled]="this.disabled"
+                    (click)="
+                        $event.preventDefault();
+                        this.insertArray();
+                        this.draw([], '', null)
+                    "
+                >
+                    Genereaza arbore
+                </button>
+            </div>
+        </form>
+        <form [formGroup]="form">
+            <input
+                name="InsertValue"
+                type="number"
+                formControlName="InsertValue"
+            />
+
+            <button
+                type="submit"
+                [disabled]="this.disabled"
+                (click)="
+                    $event.preventDefault();
+                    this.insert();
+                    this.draw([], '', null)
+                "
+            >
+                Adauga numar
+            </button>
+
+            <button
+                type="submit"
+                [disabled]="this.disabled"
+                (click)="
+                    $event.preventDefault();
+                    this.search();
+                    this.draw([], '', null)
+                "
+            >
+                Cauta numar
+            </button>
+
+            <button
+                type="submit"
+                [disabled]="this.disabled"
+                (click)="
+                    $event.preventDefault();
+                    this.remove();
+                    this.draw([], '', null)
+                "
+            >
+                Scoate numar
+            </button>
+
+            <button
+                type="submit"
+                [disabled]="this.disabled"
+                (click)="
+                    $event.preventDefault();
+                    this.inOrderTraversal();
+                    this.draw([], '', null)
+                "
+            >
+                Parcurgere In-Order
+            </button>
+        </form>
+    </div>
+    <canvas id="Canvas" width="1920" height="1080"></canvas>
+</div>
 <div class="descriptions">
     <h1 class="descriptionsTitle">Arbore Binar de Cautare</h1>
     <ul>
@@ -91,84 +177,4 @@
             </p>
         </ol>
     </ul>
-</div>
-<div class="wrapper" (window:resize)="this.draw([], '')">
-    <div class="interactions">
-        <h1 class="title">Arbore Binar De Cautare</h1>
-        <div *ngIf="tooMuch == 1" class="tooMany">
-            Too Many Values!
-            <br />
-            Remove before inserting again!
-        </div>
-        <div *ngIf="tooMuch == 0.5" class="cap">
-            You hit the size cap!
-            <br />
-        </div>
-        <form>
-            <div class="list">
-                <input name="InsertValue" [(ngModel)]="this.numberList" />
-                <button
-                    type="submit"
-                    [disabled]="this.disabled"
-                    (click)="
-                        $event.preventDefault();
-                        this.insertArray();
-                        this.draw([], '')
-                    "
-                >
-                    Genereaza arbore
-                </button>
-            </div>
-        </form>
-        <form [formGroup]="form">
-            <input
-                name="InsertValue"
-                type="number"
-                formControlName="InsertValue"
-            />
-
-            <button
-                type="submit"
-                [disabled]="this.disabled"
-                (click)="
-                    $event.preventDefault(); this.insert(); this.draw([], '')
-                "
-            >
-                Adauga numar
-            </button>
-
-            <button
-                type="submit"
-                [disabled]="this.disabled"
-                (click)="
-                    $event.preventDefault(); this.search(); this.draw([], '')
-                "
-            >
-                Cauta numar
-            </button>
-
-            <button
-                type="submit"
-                [disabled]="this.disabled"
-                (click)="
-                    $event.preventDefault(); this.remove(); this.draw([], '')
-                "
-            >
-                Scoate numar
-            </button>
-
-            <button
-                type="submit"
-                [disabled]="this.disabled"
-                (click)="
-                    $event.preventDefault();
-                    this.inOrderTraversal();
-                    this.draw([], '')
-                "
-            >
-                Parcurgere In-Order
-            </button>
-        </form>
-    </div>
-    <canvas id="Canvas" width="1920" height="1080"></canvas>
 </div>

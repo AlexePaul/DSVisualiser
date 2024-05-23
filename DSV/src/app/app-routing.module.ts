@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
-import { SllComponent } from './sll/sll.component';
+import { SllComponent } from './simple-linked-list/sll.component';
 import { BinaryHeapComponent } from './binary-heap/binary-heap.component';
 import { HomeComponent } from './home/home.component';
-import { BstComponent } from './bst/bst.component';
+import { BstComponent } from './binary-search-tree/bst.component';
 import { HashTableComponent } from './hash-table/hash-table.component';
 
 const routes: Routes = [

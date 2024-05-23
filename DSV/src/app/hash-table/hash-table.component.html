@@ -1,81 +1,93 @@
-<div class="descriptions">
-  <h1 class="descriptionsTitle">Tabela Hash</h1>
-  <ul>
-    <h1 class="op"></h1>
-    <li>
-      <p>
-        O <b>tabela hash</b> este o structura de date care stocheaza perechi de
-        cheie-valoare, unde cheile sunt rezultatul aplicarii unei functii de
-        hash valorii. Un exemplu simplu de functie de hash folosita pentru acest
-        scop este modulo. O problema des intalnita in cadrul tabelelor hash este
-        rezultatul identic pentru mai multe valori (dupa aplicarea functiei de
-        hash), pentru a combate asta, fiecare indice din tabel este reprezentat
-        de o lista simplu inaltuita.
-      </p>
-    </li>
-    <li>
-      <h1 class="op">Cautare numar</h1>
-    </li>
-    <p>
-      Complexitate: O(1) in cazul mediu (ideal), O(n) in cel mai rau caz. <br />
-      Folosind functia de hash, numarul este transformat într-un indice de
-      tabel, unde se cauta valoarea asociata.
-    </p>
-    <li>
-      <h1 class="op">Inserare numar</h1>
-    </li>
-    <p>
-      Complexitate: O(1) in cazul mediu (ideal), O(n) in cel mai rau caz. <br />
-      Se calculeaza indicele de tabel folosind functia de hash si se adauga
-      numarul la acest indice.
-    </p>
-    <li>
-      <h1 class="op">Stergere numar</h1>
-    </li>
-    <p>
-      Complexitate: O(1) in cazul mediu (ideal), O(n) in cel mai rau caz. <br />
-      Se calculeaza indicele de tabel folosind functia de hash, iar apoi se
-      elimina numarul de la acest indice (in cazul in care sunt mai multe, se
-      parcurge lista pentru a fi gasit).
-    </p>
-  </ul>
-</div>
 <div class="wrapper" (window:resize)="this.draw(-1, [], '')">
-  <div class="interactions">
-    <h1 class="title">Tabela Hash</h1>
-    <form [formGroup]="form">
-      <input name="InsertValue" type="number" formControlName="InsertValue" />
-      <button
-        type="submit"
-        [disabled]="this.disabled"
-        (click)="$event.preventDefault(); this.insert()"
-      >
-        Adauga numar
-      </button>
-      <button
-        type="submit"
-        [disabled]="this.disabled"
-        (click)="$event.preventDefault(); this.remove()"
-      >
-        Scoate Numar
-      </button>
-      <button
-        type="submit"
-        [disabled]="this.disabled"
-        (click)="$event.preventDefault(); this.search()"
-      >
-        Cauta Numar
-      </button>
-      <button
-        type="submit"
-        [disabled]="this.disabled"
-        (click)="
-          $event.preventDefault(); this.modulo = this.value; this.checkModulo()
-        "
-      >
-        Schimba Modulo
-      </button>
-    </form>
-  </div>
-  <canvas id="Canvas" width="1920" height="1080"></canvas>
+    <div class="interactions">
+        <h1 class="title">Tabela Hash</h1>
+        <form [formGroup]="form">
+            <input
+                name="InsertValue"
+                type="number"
+                formControlName="InsertValue"
+            />
+            <button
+                type="submit"
+                [disabled]="this.disabled"
+                (click)="$event.preventDefault(); this.insert()"
+            >
+                Adauga numar
+            </button>
+            <button
+                type="submit"
+                [disabled]="this.disabled"
+                (click)="$event.preventDefault(); this.remove()"
+            >
+                Scoate Numar
+            </button>
+            <button
+                type="submit"
+                [disabled]="this.disabled"
+                (click)="$event.preventDefault(); this.search()"
+            >
+                Cauta Numar
+            </button>
+            <button
+                type="submit"
+                [disabled]="this.disabled"
+                (click)="
+                    $event.preventDefault();
+                    this.modulo = this.value;
+                    this.checkModulo()
+                "
+            >
+                Schimba Modulo
+            </button>
+        </form>
+    </div>
+    <canvas id="Canvas" width="1920" height="1080"></canvas>
+</div>
+<div class="descriptions">
+    <h1 class="descriptionsTitle">Tabela Hash</h1>
+    <ul>
+        <h1 class="op"></h1>
+        <li>
+            <p>
+                O
+                <b>tabela hash</b>
+                este o structura de date care stocheaza perechi de
+                cheie-valoare, unde cheile sunt rezultatul aplicarii unei
+                functii de hash valorii. Un exemplu simplu de functie de hash
+                folosita pentru acest scop este modulo. O problema des intalnita
+                in cadrul tabelelor hash este rezultatul identic pentru mai
+                multe valori (dupa aplicarea functiei de hash), pentru a combate
+                asta, fiecare indice din tabel este reprezentat de o lista
+                simplu inaltuita.
+            </p>
+        </li>
+        <li>
+            <h1 class="op">Cautare numar</h1>
+        </li>
+        <p>
+            Complexitate: O(1) in cazul mediu (ideal), O(n) in cel mai rau caz.
+            <br />
+            Folosind functia de hash, numarul este transformat într-un indice de
+            tabel, unde se cauta valoarea asociata.
+        </p>
+        <li>
+            <h1 class="op">Inserare numar</h1>
+        </li>
+        <p>
+            Complexitate: O(1) in cazul mediu (ideal), O(n) in cel mai rau caz.
+            <br />
+            Se calculeaza indicele de tabel folosind functia de hash si se
+            adauga numarul la acest indice.
+        </p>
+        <li>
+            <h1 class="op">Stergere numar</h1>
+        </li>
+        <p>
+            Complexitate: O(1) in cazul mediu (ideal), O(n) in cel mai rau caz.
+            <br />
+            Se calculeaza indicele de tabel folosind functia de hash, iar apoi
+            se elimina numarul de la acest indice (in cazul in care sunt mai
+            multe, se parcurge lista pentru a fi gasit).
+        </p>
+    </ul>
 </div>
