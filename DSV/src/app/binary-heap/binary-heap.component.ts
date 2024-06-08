@@ -58,7 +58,7 @@ export class BinaryHeapComponent {
             ctx.moveTo(space, 150*(step+1)+circleRadius);
             ctx.lineTo(cspace, 150*(step+2)-circleRadius);
             ctx.stroke();
-          }13
+          }
           if(counter*2 + 1 <= this.bHeap.size){
             var cspace = Math.floor(windowWidth / (numberOfNodes*4));
             ctx.beginPath();

@@ -120,7 +120,6 @@ export class HashTableComponent {
     this.modulo = Math.min(this.modulo, maxModulo);
 
     this.hashTable.reset(this.hashFunction, this.modulo);
-    console.log(this.hashTable.array);
     this.cdr.detectChanges();
     this.draw(-1, [], "");
   }

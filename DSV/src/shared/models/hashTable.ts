@@ -18,6 +18,8 @@ export class hashTable{
         if(this.array[position].indexOf(value) == -1){
             this.array[position].push(value);
             await this.draw(position, [[position,this.array[position].indexOf(value)]], "Blue");
+        }else{
+            await this.draw(position, [[position,this.array[position].indexOf(value)]], "Red");
         }
     }
 
